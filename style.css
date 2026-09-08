@@ -1,0 +1,220 @@
+:root {
+    --brand-pulse: #e8186d;
+    --bg-dark: #0b0c10;
+    --surface-card: #141722;
+    --text-main: #f5f6fa;
+    --text-muted: #8e92a4;
+    --neon-glow: rgba(232, 24, 109, 0.2);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 5%;
+    background: linear-gradient(to bottom, rgba(11,12,16,1), rgba(11,12,16,0));
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+}
+
+.logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--brand-pulse);
+}
+
+.admin-trigger {
+    background: transparent;
+    border: 1px solid var(--text-muted);
+    color: var(--text-muted);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.admin-trigger:hover {
+    border-color: var(--brand-pulse);
+    color: var(--brand-pulse);
+    box-shadow: 0 0 15px var(--neon-glow);
+}
+
+.hero {
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 5%;
+    position: relative;
+    background: radial-gradient(circle at 80% 20%, var(--neon-glow) 0%, transparent 50%);
+}
+
+.hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    max-width: 800px;
+}
+
+.hero h1 span {
+    background: linear-gradient(45deg, #fff, var(--brand-pulse));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    color: var(--text-muted);
+    max-width: 500px;
+    margin-top: 20px;
+}
+
+.series-section {
+    padding: 80px 5%;
+}
+
+.section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+.loading-status {
+    color: var(--text-muted);
+}
+
+.series-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.series-card {
+    background: var(--surface-card);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 16px;
+    padding: 35px;
+    position: relative;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.series-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px var(--neon-glow);
+    border-color: rgba(232, 24, 109, 0.3);
+}
+
+.series-card .badge {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--brand-pulse);
+    font-weight: 700;
+}
+
+.series-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.8rem;
+    margin: 20px 0 10px 0;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(5, 6, 9, 0.95);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+}
+
+.modal-content {
+    background: var(--surface-card);
+    padding: 40px;
+    border-radius: 24px;
+    width: 90%;
+    max-width: 500px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.modal-content h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: #fff;
+    font-family: inherit;
+}
+
+.submit-btn {
+    background: var(--brand-pulse);
+    color: #fff;
+    border: none;
+    padding: 14px;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.submit-btn:hover {
+    background: #c61259;
+}
+
+.cancel-btn {
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
+    margin-top: 15px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.cancel-btn:hover {
+    color: #fff;
+}

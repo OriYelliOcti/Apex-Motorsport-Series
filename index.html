@@ -5,216 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Velocity Motorsport Series | The Next Generation</title>
     
+    <!-- Link to external fonts and styles -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;600;800&family=Space+Grotesk:wght=500;700&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Space+Grotesk:wght=500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 
-    <style>
-        :root {
-            --brand-pulse: #e8186d;
-            --bg-dark: #0b0c10;
-            --surface-card: #141722;
-            --text-main: #f5f6fa;
-            --text-muted: #8e92a4;
-            --neon-glow: rgba(232, 24, 109, 0.2);
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 30px 5%;
-            background: linear-gradient(to bottom, rgba(11,12,16,1), rgba(11,12,16,0));
-            position: absolute;
-            width: 100%;
-            z-index: 10;
-        }
-
-        .logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 1.5rem;
-            letter-spacing: -1px;
-            color: var(--text-main);
-        }
-
-        .logo span { color: var(--brand-pulse); }
-
-        .admin-trigger {
-            background: transparent;
-            border: 1px solid var(--text-muted);
-            color: var(--text-muted);
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-        }
-
-        .admin-trigger:hover {
-            border-color: var(--brand-pulse);
-            color: var(--brand-pulse);
-            box-shadow: 0 0 15px var(--neon-glow);
-        }
-
-        .hero {
-            min-height: 85vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 0 5%;
-            position: relative;
-            background: radial-gradient(circle at 80% 20%, var(--neon-glow) 0%, transparent 50%);
-        }
-
-        .hero h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            line-height: 1.1;
-            margin-bottom: 20px;
-            max-width: 800px;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(45deg, #fff, var(--brand-pulse));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .series-section { padding: 80px 5%; }
-
-        .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 40px;
-        }
-
-        .series-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .series-card {
-            background: var(--surface-card);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 16px;
-            padding: 35px;
-            position: relative;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
-        }
-
-        .series-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px var(--neon-glow);
-            border-color: rgba(232, 24, 109, 0.3);
-        }
-
-        .series-card .badge {
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--brand-pulse);
-            font-weight: 700;
-        }
-
-        .series-card h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.8rem;
-            margin: 20px 0 10px 0;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 6, 9, 0.95);
-            z-index: 100;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(10px);
-        }
-
-        .modal-content {
-            background: var(--surface-card);
-            padding: 40px;
-            border-radius: 24px;
-            width: 90%;
-            max-width: 500px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .form-group { margin-bottom: 20px; }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            background: rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 8px;
-            color: #fff;
-            font-family: inherit;
-        }
-
-        .submit-btn {
-            background: var(--brand-pulse);
-            color: #fff;
-            border: none;
-            padding: 14px;
-            width: 100%;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-    </style>
+    <!-- Load Supabase Core Infrastructure (deferred to prevent lag) -->
+    <script src="https://jsdelivr.net" defer></script>
+    <!-- Load your custom application script -->
+    <script src="app.js" defer></script>
 </head>
 <body>
 
+    <!-- Main Navigation Header -->
     <header>
         <div class="logo">VMS<span>.</span></div>
-        <button class="admin-trigger" onclick="toggleModal(true)">Admin Panel</button>
+        <button class="admin-trigger" id="adminBtn">Admin Panel</button>
     </header>
 
+    <!-- Public Viewport -->
     <main>
         <section class="hero">
             <h1>Built for Speed.<br>Driven by <span>Passion.</span></h1>
-            <p style="color: var(--text-muted); max-width: 500px; margin-top: 20px;">
-                We are more than telemetry and lap times. VMS is the heartbeat of a community shaping the champions of tomorrow.
-            </p>
+            <p>We are more than telemetry and lap times. VMS is the heartbeat of a community shaping the champions of tomorrow.</p>
         </section>
 
         <section class="series-section">
             <h2 class="section-title">Active Championships</h2>
             <div class="series-container" id="championships-list">
-                <p style="color: var(--text-muted)">Connecting to track network...</p>
+                <p class="loading-status">Connecting to track network...</p>
             </div>
         </section>
     </main>
+
+    <!-- Administrative Configuration Overlay -->
     <div class="modal" id="adminModal">
         <div class="modal-content">
-            <h2 style="font-family: 'Space Grotesk', sans-serif; margin-bottom: 20px;">Add New Racing Series</h2>
+            <h2>Add New Racing Series</h2>
             <form id="db-control-form">
                 <div class="form-group">
                     <label>Championship Code Name</label>
@@ -229,114 +57,10 @@
                     <input type="number" id="seriesDrivers" placeholder="e.g., 20" required>
                 </div>
                 <button type="submit" class="submit-btn">Publish to Live Database</button>
-                <button type="button" onclick="toggleModal(false)" style="background:transparent; color: var(--text-muted); border:none; margin-top: 15px; cursor:pointer; width:100%;">Cancel Operation</button>
+                <button type="button" id="closeAdminBtn" class="cancel-btn">Cancel Operation</button>
             </form>
         </div>
     </div>
 
-        <!-- 1. Laden der Supabase-Infrastruktur über CDN -->
-    <script src="https://jsdelivr.net"></script>
-
-    <script>
-        // Datenbank-Konfiguration
-        const SUPABASE_URL = "https://ikzquusxwdazhztkafjt.supabase.co";
-        
-        // WICHTIG: Setze hier deinen echten sb_publishable_... Key ein!
-        const SUPABASE_ANON_KEY = "DEIN_ECHTER_PUBLISHABLE_KEY_HIER"; 
-
-        // GLOBALE INITIALISIERUNG (Korrigierte Browser-Zuweisung)
-        // Das Browser-Paket registriert sich global unter "supabase" – wir erstellen daraus unsere Instanz
-        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-        // UI FUNKTION: Öffnet und schließt das Admin-Fenster absolut verzögerungsfrei
-        function toggleModal(show) {
-            const modalElement = document.getElementById('adminModal');
-            if (modalElement) {
-                modalElement.style.display = show ? 'flex' : 'none';
-            }
-        }
-
-        // DATEN-ABFRAGE (GET)
-        async function fetchChampionships() {
-            const listContainer = document.getElementById('championships-list');
-            try {
-                let { data: championships, error } = await supabaseClient
-                    .from('championships')
-                    .select('*')
-                    .order('created_at', { ascending: true });
-
-                if (error) throw error;
-                listContainer.innerHTML = '';
-
-                if (championships.length === 0) {
-                    listContainer.innerHTML = `<p style="color: var(--text-muted)">No active racing tiers deployed yet. Open Admin Control to initialize.</p>`;
-                    return;
-                }
-
-                championships.forEach(item => {
-                    listContainer.innerHTML += `
-                        <div class="series-card">
-                            <span class="badge">${item.tier}</span>
-                            <h3>${item.code}</h3>
-                            <p style="color: var(--text-muted); font-size: 0.9rem;">Grid Lineup: ${item.drivers} Drivers</p>
-                        </div>
-                    `;
-                });
-            } catch (err) {
-                console.error("Database connection failed:", err.message);
-                listContainer.innerHTML = `<p style="color: #e8186d">Failed to sync with track control network. Verify project API credentials.</p>`;
-            }
-        }
-
-        // ADMIN-EINTRAG (POST)
-        document.getElementById('db-control-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const seriesCode = document.getElementById('seriesCode').value;
-            const seriesTier = document.getElementById('seriesTier').value;
-            const seriesDrivers = parseInt(document.getElementById('seriesDrivers').value);
-
-            const adminEmail = prompt("Enter Authorized Admin Email:");
-            const adminPassword = prompt("Enter Administrative Access Password:");
-
-            if (!adminEmail || !adminPassword) {
-                alert("Transaction aborted. Verification data missing.");
-                return;
-            }
-
-            try {
-                // Einloggen über die korrigierte Client-Instanz
-                const { data: authData, error: authError } = await supabaseClient.auth.signInWithPassword({
-                    email: adminEmail,
-                    password: adminPassword,
-                });
-
-                if (authError) throw new Error("Verification failed: " + authError.message);
-
-                // Daten in die PostgreSQL-Tabelle einspeisen
-                const { error: insertError } = await supabaseClient
-                    .from('championships')
-                    .insert([
-                        { code: seriesCode, tier: seriesTier, drivers: seriesDrivers }
-                    ]);
-
-                if (insertError) throw insertError;
-
-                alert("Successfully published to live database!");
-                await supabaseClient.auth.signOut();
-
-                fetchChampionships();
-                toggleModal(false);
-                this.reset();
-            } catch (err) {
-                alert("Operation failed: " + err.message);
-                console.error(err);
-            }
-        });
-
-        // Startet die Synchronisierung, sobald die Seite geladen ist
-        window.addEventListener('DOMContentLoaded', fetchChampionships);
-    </script>
 </body>
 </html>
-
