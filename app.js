@@ -1,7 +1,7 @@
 const SUPABASE_URL = "https://supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_-N5JX1LBBNUHxnOe9E5R4A_tyqDzvLT";
 
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 let currentSessionUser = null;
 let allRaces = [];
@@ -41,7 +41,7 @@ function initApp() {
 
 async function fetchRaces() {
     try {
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
             .from('races')
             .select('*')
             .order('race_date', { ascending: true });
@@ -84,7 +84,7 @@ function renderRaces(races) {
 
 async function fetchStandings() {
     try {
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
             .from('standings')
             .select('*')
             .order('series', { ascending: true })
@@ -191,7 +191,7 @@ function setupLoginForm() {
             const email = document.getElementById("admin-email").value;
             const password = document.getElementById("admin-password").value;
 
-            const { data, error } = await supabase.auth.signInWithPassword({
+            const { data, error } = await supabaseClient.auth.signInWithPassword({
                 email: email,
                 password: password,
             });
@@ -208,7 +208,6 @@ function setupLoginForm() {
     }
 }
 
-// 7. BROADCAST STRUCTURAL BLOCK
 function setupRaceForm() {
     const form = document.getElementById("race-form");
     if (form) {
@@ -222,7 +221,7 @@ function setupRaceForm() {
                 race_date: new Date(document.getElementById("race-date").value).toISOString()
             };
 
-            const { data, error } = await supabase
+            const { data, error } = await supabaseClient
                 .from('races')
                 .insert([raceData]);
 
