@@ -11,10 +11,10 @@
 </head>
 <body>
 
+    <!-- REPARIERT: Kein Text-Fallback mehr, der durchschimmern kann -->
     <div id="intro-overlay">
         <div class="intro-car-streak"></div>
         <img src="logo.png" alt="AMS" class="intro-logo-img" onerror="this.style.display='none'">
-        <div class="intro-logo-fallback">AMS</div>
     </div>
 
     <div id="app-wrapper">
@@ -41,6 +41,7 @@
         </header>
 
         <main>
+            <!-- REPARIERT: Richtige Klassen-Verschachtelung für das ZeBeyond-Layout -->
             <section class="hero-banner">
                 <div class="hero-content">
                     <div class="hero-badge">2026 SEASON // AMS LEAGUE</div>
@@ -59,7 +60,6 @@
                 </div>
             </section>
 
-            <!-- RACE CALENDAR -->
             <section id="schedule" class="dashboard-section">
                 <div class="section-header">
                     <h3 class="section-heading">RACE CALENDAR</h3>
@@ -76,7 +76,6 @@
                 </div>
             </section>
 
-            <!-- CHAMPIONSHIP BATTLES (VMS STYLE BAR GRAPH LAYOUT) -->
             <section id="standings" class="dashboard-section">
                 <div class="section-header">
                     <h3 class="section-heading">CHAMPIONSHIP BATTLES</h3>
@@ -86,7 +85,6 @@
                 </div>
             </section>
 
-            <!-- OFFICIAL LINEUPS (IMAGE 3 GRID LAYOUT - COMPLETELY CLEAN FOR DYNAMIC INJECTION) -->
             <section id="lineups" class="dashboard-section">
                 <div class="section-header">
                     <h3 class="section-heading">OFFICIAL LINEUPS</h3>
@@ -96,7 +94,6 @@
                 </div>
             </section>
 
-            <!-- PORTAL LOGIN -->
             <section id="admin-trigger" class="dashboard-section admin-section hidden">
                 <div class="section-header">
                     <h3 class="section-heading">PORTAL LOG IN</h3>
@@ -120,7 +117,6 @@
                         <span>CONTROL INTERFACE ACTIVE</span>
                         <button id="logout-btn" class="btn-logout-portal">LOG OUT</button>
                     </div>
-                    
                     <form id="race-form" class="portal-form" style="margin-top: 20px;">
                         <div class="form-group">
                             <label>Series Tier</label>
@@ -152,7 +148,7 @@
         <footer>
             <div class="footer-wrap">
                 <div>&copy; 2026 APEX MOTORSPORT SERIES.</div>
-                <div class="footer-version">v3.4 // PRO PRODUCTION ENGINE</div>
+                <div class="footer-version">v3.5 // PREMIUM HIGH-TECH ENGINE</div>
             </div>
         </footer>
     </div>
