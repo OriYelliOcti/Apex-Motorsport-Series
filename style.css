@@ -1,4 +1,4 @@
-/* --- APEX RACING NET GROOVE LOOK (ZEBEYOND INSPIRED) --- */
+/* --- APEX RACING HYBRID GLOW LOOK (CYAN & RACING RED) --- */
 * {
     margin: 0;
     padding: 0;
@@ -9,8 +9,10 @@
     --bg-dark-core: #050708;
     --panel-dark-sub: #0b0e11;
     --border-clean: rgba(255, 255, 255, 0.05);
-    --ams-teal: #00f0b5;
-    --ams-teal-glow: rgba(0, 240, 181, 0.15);
+    --ams-cyan: #00f0b5;
+    --ams-red: #ff1801;
+    --ams-cyan-glow: rgba(0, 240, 181, 0.12);
+    --ams-red-glow: rgba(255, 24, 1, 0.15);
     --text-pure: #ffffff;
     --text-dimmed: #8a99ad;
     --font-heading: 'Orbitron', sans-serif;
@@ -40,7 +42,7 @@ body {
 .intro-car-streak {
     position: absolute;
     width: 200px; height: 4px;
-    background: linear-gradient(90deg, transparent, var(--ams-teal), #fff, transparent);
+    background: linear-gradient(90deg, transparent, var(--ams-red), var(--ams-cyan), transparent);
     left: -300px; filter: blur(1px);
     animation: carZoom 0.8s cubic-bezier(0.7, 0, 0.3, 1) forwards;
     animation-delay: 0.3s;
@@ -61,7 +63,7 @@ body {
 
 @keyframes smoothDrop {
     0% { opacity: 0; transform: translateY(-40px); }
-    100% { opacity: 1; transform: translateY(0); filter: drop-shadow(0 0 20px var(--ams-teal-glow)); }
+    100% { opacity: 1; transform: translateY(0); filter: drop-shadow(0 0 20px var(--ams-red-glow)); }
 }
 
 .shake-trigger { animation: screenShake 0.4s linear; }
@@ -113,7 +115,7 @@ header {
 }
 
 .logo { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 900; }
-.red-bar { color: var(--ams-teal); text-shadow: 0 0 10px var(--ams-teal); }
+.red-bar { color: var(--ams-red); text-shadow: 0 0 10px var(--ams-red-glow); }
 nav { display: flex; align-items: center; }
 
 .nav-link {
@@ -132,22 +134,27 @@ nav { display: flex; align-items: center; }
     border-radius: 4px;
     background: rgba(255, 255, 255, 0.02);
 }
-.nav-link.login-btn:hover { background: var(--ams-teal); color: #000; box-shadow: 0 0 15px var(--ams-teal-glow); }
+.nav-link.login-btn:hover { background: var(--ams-cyan); color: #000; box-shadow: 0 0 15px var(--ams-cyan-glow); }
+
+.hero-groove-wrapper {
+    background: radial-gradient(circle at 75% 30%, var(--ams-red-glow) 0%, transparent 55%);
+    border-bottom: 1px solid var(--border-clean);
+}
 
 .hero-banner {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    padding: 80px 10%;
-    border-bottom: 1px solid var(--border-clean);
+    padding: 100px 10%;
     min-height: 55vh;
-    gap: 40px;
-    background: radial-gradient(circle at 50% 50%, rgba(0, 240, 181, 0.05) 0%, transparent 70%);
+    gap: 60px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .hero-content {
-    flex: 1;
+    flex: 1.2;
     min-width: 320px;
     display: flex;
     flex-direction: column;
@@ -157,19 +164,19 @@ nav { display: flex; align-items: center; }
 
 .hero-badge {
     font-size: 0.85rem;
-    color: var(--ams-teal);
+    color: var(--ams-cyan);
     font-family: var(--font-heading);
     font-weight: 900;
     margin-bottom: 20px;
     letter-spacing: 2px;
 }
 
-.hero-logo-wrapper { max-width: 340px; width: 100%; margin-bottom: 25px; }
-.ams-hero-logo { width: 100%; height: auto; display: block; filter: drop-shadow(0 0 20px var(--ams-teal-glow)); }
+.hero-logo-wrapper { max-width: 320px; width: 100%; margin-bottom: 25px; }
+.ams-hero-logo { width: 100%; height: auto; display: block; filter: drop-shadow(0 0 25px var(--ams-red-glow)); }
 .hero-description {
     color: var(--text-dimmed);
-    font-size: 1.1rem;
-    max-width: 500px;
+    font-size: 1.15rem;
+    max-width: 520px;
     line-height: 1.6;
     margin-bottom: 35px;
 }
@@ -182,24 +189,26 @@ nav { display: flex; align-items: center; }
     font-weight: 900;
     padding: 14px 28px;
     border-radius: 6px;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
-.btn-primary { background: var(--ams-teal); color: #000; box-shadow: 0 0 20px var(--ams-teal-glow); }
-.btn-primary:hover { background: #fff; box-shadow: none; }
-.btn-secondary { background: rgba(255, 255, 255, 0.03); color: #fff; border: 1px solid var(--border-clean); }
-.btn-secondary:hover { background: rgba(255, 255, 255, 0.08); border-color: #71717a; }
+.btn-primary { background: var(--ams-cyan); color: #000; box-shadow: 0 0 25px var(--ams-cyan-glow); }
+.btn-primary:hover { background: var(--ams-red); color: #fff; box-shadow: 0 0 25px var(--ams-red-glow); transform: translateY(-2px); }
+.btn-secondary { background: rgba(255, 255, 255, 0.02); color: #fff; border: 1px solid var(--border-clean); }
+.btn-secondary:hover { background: rgba(255, 255, 255, 0.06); transform: translateY(-2px); }
 
 .hero-countdown-box {
-    padding: 40px;
-    border-radius: 8px;
-    border: 1px solid var(--border-clean);
-    background: var(--panel-dark-sub);
+    padding: 45px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(11, 14, 17, 0.7);
+    backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-width: 320px;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.4);
+    min-width: 340px;
+    flex: 0.8;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
 .countdown-label {
@@ -211,17 +220,17 @@ nav { display: flex; align-items: center; }
 }
 .timer-display {
     font-family: var(--font-heading);
-    font-size: 3.2rem;
+    font-size: 3.4rem;
     font-weight: 900;
     color: var(--text-pure);
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
 }
-.dashboard-section { padding: 80px 10%; border-bottom: 1px solid var(--border-clean); }
+.dashboard-section { padding: 90px 10%; border-bottom: 1px solid var(--border-clean); }
 .section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 45px;
     flex-wrap: wrap; gap: 20px;
 }
 .section-heading { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 900; letter-spacing: 1px; }
@@ -233,49 +242,49 @@ nav { display: flex; align-items: center; }
     color: var(--text-dimmed);
     font-family: var(--font-heading);
     font-size: 0.85rem; font-weight: 900;
-    padding: 10px 20px; border-radius: 6px; cursor: pointer;
+    padding: 10px 22px; border-radius: 6px; cursor: pointer;
     transition: 0.2s;
 }
-.filter-node:hover, .filter-node.active { color: #fff; border-color: var(--ams-teal); background: rgba(0, 240, 181, 0.02); }
+.filter-node:hover, .filter-node.active { color: #fff; border-color: var(--ams-cyan); background: rgba(0, 240, 181, 0.02); }
 
 .dashboard-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
 }
 
 .race-card {
     background: var(--panel-dark-sub);
     border: 1px solid var(--border-clean);
-    padding: 30px; border-radius: 8px;
+    padding: 35px; border-radius: 10px;
     position: relative;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
-.race-card:hover { border-color: rgba(0, 240, 181, 0.3); transform: translateY(-2px); }
+.race-card:hover { border-color: rgba(0, 240, 181, 0.25); transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
 
 .badge {
-    position: absolute; top: 30px; right: 30px;
+    position: absolute; top: 35px; right: 35px;
     font-family: var(--font-heading); font-size: 0.8rem; font-weight: bold;
 }
-.badge.formula-1 { color: var(--ams-teal); text-shadow: 0 0 10px var(--ams-teal-glow); }
+.badge.formula-1 { color: var(--ams-red); text-shadow: 0 0 10px var(--ams-red-glow); }
 .badge.formula-2 { color: #00b0f0; }
 .badge.formula-3 { color: #fcc000; }
-.badge.gt3 { color: #ffaa00; }
+.badge.gt3 { color: var(--ams-cyan); text-shadow: 0 0 10px var(--ams-cyan-glow); }
 
-.track-name { font-family: var(--font-heading); font-size: 1.3rem; margin-top: 15px; font-weight: 900; }
+.track-name { font-family: var(--font-heading); font-size: 1.35rem; margin-top: 15px; font-weight: 900; }
 .race-meta { color: var(--text-dimmed); font-size: 0.95rem; margin-top: 6px; }
 
 .battles-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    gap: 30px;
 }
 @media (max-width: 500px) { .battles-container { grid-template-columns: 1fr; } }
 
 .series-battle-block {
     background: var(--panel-dark-sub);
     border: 1px solid var(--border-clean);
-    border-radius: 8px; padding: 30px;
+    border-radius: 10px; padding: 35px;
 }
 .battle-series-title {
     font-family: var(--font-heading); font-size: 1rem; color: var(--text-dimmed);
@@ -318,35 +327,41 @@ nav { display: flex; align-items: center; }
 .driver-card-meta-strings span { font-size: 0.8rem; font-weight: bold; opacity: 0.5; text-transform: uppercase; }
 .driver-card-huge-number { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 900; opacity: 0.2; z-index: 2; }
 
-.portal-container { display: flex; justify-content: center; }
+.portal-container { display: flex; justify-content: center; padding: 40px 0; }
 .portal-form {
-    background: var(--panel-dark-sub); border: 1px solid var(--border-clean);
-    padding: 40px; width: 100%; max-width: 440px; border-radius: 8px;
+    background: #090c0e; border: 1px solid var(--border-clean);
+    padding: 45px; width: 100%; max-width: 460px; border-radius: 12px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
 }
-.form-group { margin-bottom: 20px; }
-.form-group label { display: block; color: var(--text-dimmed); font-size: 0.8rem; margin-bottom: 6px; font-weight: bold; }
+.form-grid-admin { display: flex; justify-content: center; width: 100%; }
+.form-group { margin-bottom: 24px; }
+.form-group label { display: block; color: var(--text-dimmed); font-size: 0.8rem; margin-bottom: 8px; font-weight: bold; letter-spacing: 1px; }
 .form-group input, .form-group select {
     width: 100%; background: var(--bg-dark-core); border: 1px solid var(--border-clean);
-    padding: 12px; color: #fff; border-radius: 6px; font-family: var(--font-ui); font-size: 1rem;
+    padding: 14px; color: #fff; border-radius: 6px; font-family: var(--font-ui); font-size: 1rem;
+    transition: border-color 0.2s;
 }
-.form-group input:focus { outline: none; border-color: var(--ams-teal); }
+.form-group input:focus { outline: none; border-color: var(--ams-cyan); }
 
 .btn-portal-submit {
-    width: 100%; padding: 14px; background: var(--ams-teal); color: #000;
+    width: 100%; padding: 14px; background: var(--ams-cyan); color: #000;
     border: none; font-family: var(--font-heading); font-weight: 900;
-    border-radius: 6px; cursor: pointer; font-size: 0.85rem; box-shadow: 0 0 15px var(--ams-teal-glow);
+    border-radius: 6px; cursor: pointer; font-size: 0.85rem; box-shadow: 0 0 20px var(--ams-cyan-glow);
+    transition: all 0.2s;
 }
-.btn-portal-submit.red-btn { background: var(--ams-teal); color: #000; }
+.btn-portal-submit:hover { background: #fff; box-shadow: none; }
 .dashboard-control-bar {
     display: flex; justify-content: space-between; align-items: center;
     background: var(--panel-dark-sub); border: 1px solid var(--border-clean);
-    padding: 15px 20px; border-radius: 8px; font-weight: bold;
+    padding: 18px 25px; border-radius: 8px; font-weight: bold; font-family: var(--font-heading); font-size: 0.9rem;
+    max-width: 600px; margin: 0 auto 30px auto;
 }
 .btn-logout-portal {
-    background: transparent; border: 1px solid #71717a; color: #fff;
+    background: transparent; border: 1px solid #455361; color: #fff;
     font-family: var(--font-heading); font-weight: 900; font-size: 0.8rem;
-    padding: 6px 12px; border-radius: 4px; cursor: pointer;
+    padding: 6px 14px; border-radius: 4px; cursor: pointer; transition: 0.2s;
 }
+.btn-logout-portal:hover { border-color: var(--ams-cyan); color: var(--ams-cyan); }
 
 footer { padding: 50px 10%; border-top: 1px solid var(--border-clean); color: var(--text-dimmed); font-size: 0.9rem; }
 .footer-wrap { display: flex; justify-content: space-between; }
