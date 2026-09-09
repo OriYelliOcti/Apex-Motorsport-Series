@@ -3,125 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VMS — Velocity Motorsport Series</title>
+    <title>Velocity Motorsport Series | VMS</title>
+    <!-- Google Fonts for bold, aggressive typography -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <!-- Premium Fonts for that aggressive racing look -->
-    <link href="https://googleapis.com/css2?family=Chalan:wght@900&family=Plus+Jakarta+Sans:wght@400;600;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Supabase CDN JS Library -->
+    <script src="https://jsdelivr.net"></script>
+    <!-- Local Stylesheet -->
     <link rel="stylesheet" href="style.css">
-    
-    <!-- Supabase Infrastructure integration -->
-    <script src="https://cloudflare.com" defer></script>
-    <script src="app.js" defer></script>
 </head>
 <body>
 
-    <!-- Top Navigation Area -->
+    <!-- LIVE NEWS TICKER -->
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <div class="ticker__item">+++ VMS SEASON STARTING SOON +++</div>
+            <div class="ticker__item">FOUR SERIES: F1, F2, F3, ENDURANCE +++</div>
+            <div class="ticker__item">REGISTRATION FOR NEXT RACE IS OPEN NOW +++</div>
+            <div class="ticker__item">NEW SUPABASE DATABASE ONLINE +++</div>
+        </div>
+    </div>
+
     <header>
-        <div class="header-left">
-            <span class="logo-vms">VMS</span>
-            <span class="logo-sub">VELOCITY MOTORSPORT SERIES</span>
-        </div>
-        <div class="header-right">
-            <button class="nav-btn discord-btn">Discord</button>
-            <button class="nav-btn youtube-btn">YouTube</button>
-            <button class="admin-trigger-link" id="adminBtn">Race Control</button>
-        </div>
+        <div class="logo">VMS</div>
+        <nav>
+            <a href="#schedule" class="active">SCHEDULE</a>
+            <a href="#standings">STANDINGS</a>
+            <a href="#admin-trigger" id="admin-nav">ADMIN</a>
+        </nav>
     </header>
 
-    <!-- Sidebar Navigation Anchors -->
-    <nav class="sidebar">
-        <div class="sidebar-icon active">🏠</div>
-        <div class="sidebar-icon">🏁</div>
-        <div class="sidebar-icon">🏆</div>
-        <div class="sidebar-icon">⚙️</div>
-    </nav>
-
-    <!-- Main Viewport -->
     <main>
-        <!-- Hero Section directly modeled after your screenshot -->
-        <section class="hero-section">
-            <p class="season-badge">— 2026 SEASON • VMS CAREER LADDER</p>
-            <h1 class="hero-title">VELOCITY<br><span class="gradient-text">MOTORSPORT</span></h1>
+        <!-- HERO SECTION WITH COUNTDOWN -->
+        <section class="hero">
+            <h1 class="glitch" data-text="VELOCITY">VELOCITY</h1>
+            <h2 class="sub-title">MOTORSPORT SERIES</h2>
             
-            <p class="hero-description">
-                Four championships. One ladder. The home of open-wheel and endurance racing's next generation of champions — from Formula 3 to F1 glory and GT3 to Hypercar.
-            </p>
-
-            <div class="cta-group">
-                <button class="btn btn-primary">EXPLORE SERIES →</button>
-                <button class="btn btn-secondary">RACE CALENDAR</button>
-            </div>
-
-            <!-- Authentic Dashboard Stat Counters -->
-            <div class="stats-grid">
-                <div class="stat-box"><span class="stat-num">4</span><span class="stat-label">SERIES</span></div>
-                <div class="stat-box"><span class="stat-num">64+</span><span class="stat-label">DRIVERS</span></div>
-                <div class="stat-box"><span class="stat-num">16</span><span class="stat-label">ROUNDS</span></div>
-                <div class="stat-box"><span class="stat-num">20+</span><span class="stat-label">COUNTRIES</span></div>
-            </div>
-
-            <!-- Ticker and Countdown Status Bar -->
-            <div class="status-bar">
-                <div class="status-left">
-                    <span class="next-race-tag">NEXT RACE</span>
-                    <span class="race-name">QATAR GRAND PRIX</span>
-                    <span class="race-details">FORMULA 1 • FORMULA 2 • FORMULA 3 • ROUND 11</span>
-                </div>
-                <!-- Real-time dynamic JS Countdown Clock -->
-                <div class="countdown-clock" id="countdown">
-                    <div class="time-segment"><span id="days">00</span><label>DAYS</label></div>
-                    <div class="time-segment"><span id="hours">00</span><label>HRS</label></div>
-                    <div class="time-segment"><span id="mins">00</span><label>MIN</label></div>
-                    <div class="time-segment"><span id="secs">00</span><label>SEC</label></div>
-                </div>
+            <div class="countdown-container">
+                <div class="countdown-title">NEXT EVENT COUNTDOWN</div>
+                <div id="countdown">00d 00h 00m 00s</div>
             </div>
         </section>
 
-        <!-- Live Dynamic Infoticker / Marquee Banner -->
-        <div class="ticker-wrap">
-            <div class="ticker">
-                <div class="ticker__item"><span class="highlight">VMS F1</span>: NICK LEADS WITH 154 PTS</div>
-                <div class="ticker__item">★ NICK WINS THE HOCKENHEIM GP ★</div>
-                <div class="ticker__item">NEXT: <span class="highlight">QATAR GRAND PRIX</span> SEP 12 - SEP 13</div>
-                <!-- Duplicated for seamless loops -->
-                <div class="ticker__item"><span class="highlight">VMS F1</span>: NICK LEADS WITH 154 PTS</div>
-                <div class="ticker__item">★ NICK WINS THE HOCKENHEIM GP ★</div>
-                <div class="ticker__item">NEXT: <span class="highlight">QATAR GRAND PRIX</span> SEP 12 - SEP 13</div>
+        <!-- SCHEDULE SECTION -->
+        <section id="schedule" class="content-section">
+            <h3 class="section-title">LIVE RACE SCHEDULE</h3>
+            <div class="series-filter">
+                <button class="filter-btn active" data-series="all">ALL</button>
+                <button class="filter-btn" data-series="F1">F1</button>
+                <button class="filter-btn" data-series="F2">F2</button>
+                <button class="filter-btn" data-series="F3">F3</button>
+                <button class="filter-btn" data-series="Endurance">ENDURANCE</button>
             </div>
-        </div>
+            <div id="races-list" class="grid-container">
+                <div class="loading">Loading live race data...</div>
+            </div>
+        </section>
 
-        <!-- Championships Content Hub handled by Supabase -->
-        <section class="championships-hub">
-            <h2 class="hub-title">— TITLE FIGHT<br><span class="big-title">CHAMPIONSHIP BATTLES</span></h2>
-            <div class="series-cards-grid" id="championships-list">
-                <p class="loading-text">Synchronizing telemetry data grids...</p>
+        <!-- STANDINGS SECTION -->
+        <section id="standings" class="content-section">
+            <h3 class="section-title">DRIVER STANDINGS</h3>
+            <div id="standings-list" class="grid-container">
+                <div class="loading">Loading current standings...</div>
+            </div>
+        </section>
+
+        <!-- HIDDEN ADMIN SECTION -->
+        <section id="admin-trigger" class="content-section admin-section hidden">
+            <h3 class="section-title">ADMIN PANEL</h3>
+            
+            <!-- Auth Form -->
+            <form id="login-form" class="admin-form">
+                <div class="form-group">
+                    <label>Admin Email</label>
+                    <input type="email" id="admin-email" value="eduardofucucuu@gmail.com" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="admin-password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn-submit">VERIFY ADMIN</button>
+            </form>
+
+            <!-- Dashboard Form (becomes visible after login) -->
+            <div id="admin-dashboard" class="hidden">
+                <p class="status-msg success">Access Granted. Welcome Admin.</p>
+                
+                <h4 style="color: #fff; margin-bottom: 15px; font-family: 'Orbitron';">Add New Race</h4>
+                <form id="race-form" class="admin-form">
+                    <div class="form-group">
+                        <label>Series</label>
+                        <select id="race-series">
+                            <option value="F1">F1</option>
+                            <option value="F2">F2</option>
+                            <option value="F3">F3</option>
+                            <option value="Endurance">Endurance</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Track Name</label>
+                        <input type="text" id="race-track" required placeholder="e.g. Spa-Francorchamps">
+                    </div>
+                    <div class="form-group">
+                        <label>Country</label>
+                        <input type="text" id="race-country" required placeholder="e.g. Belgium">
+                    </div>
+                    <div class="form-group">
+                        <label>Race Date & Time</label>
+                        <input type="datetime-local" id="race-date" required>
+                    </div>
+                    <button type="submit" class="btn-submit neon-green-btn">PUBLISH RACE LIVE</button>
+                </form>
             </div>
         </section>
     </main>
 
-    <!-- Administrative Portal Overlay Modal -->
-    <div class="modal" id="adminModal">
-        <div class="modal-content">
-            <h2>Add New Racing Series</h2>
-            <form id="db-control-form">
-                <div class="form-group">
-                    <label>Championship Code Name</label>
-                    <input type="text" id="seriesCode" placeholder="e.g., VMS F1" required>
-                </div>
-                <div class="form-group">
-                    <label>Tier Category</label>
-                    <input type="text" id="seriesTier" placeholder="e.g., Pinnacle Series" required>
-                </div>
-                <div class="form-group">
-                    <label>Driver Slots Available</label>
-                    <input type="number" id="seriesDrivers" placeholder="e.g., 20" required>
-                </div>
-                <button type="submit" class="submit-btn">Publish to Live Database</button>
-                <button type="button" id="closeAdminBtn" class="cancel-btn">Cancel Operation</button>
-            </form>
-        </div>
-    </div>
+    <footer>
+        <p>&copy; 2026 VELOCITY MOTORSPORT SERIES. ALL RIGHTS RESERVED.</p>
+    </footer>
 
+    <!-- Local JavaScript -->
+    <script src="app.js"></script>
 </body>
 </html>

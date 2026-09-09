@@ -1,33 +1,140 @@
-// Database Network Configuration Context Setup
-const SUPABASE_URL = "https://supabase.co";
+// ⚠️ SUPABASE CONFIGURATION
+// Replace these placeholders with your actual Supabase Project details:
+const SUPABASE_URL = "YOUR_SUPABASE_URL_HERE";
+const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY_HERE";
 
-// ATTENTION: Paste your original active token inside the quotes below!
-const SUPABASE_ANON_KEY = "DEIN_ECHTER_PUBLISHABLE_KEY_HIER"; 
+// Initialize Supabase Client
+const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-let supabaseClient = null;
+let currentSessionUser = null;
+let allRaces = [];
 
-// UI Overlay Controller
-function toggleModal(show) {
-    const modalElement = document.getElementById('adminModal');
-    if (modalElement) {
-        modalElement.style.display = show ? 'flex' : 'none';
+// DOM Elements loaded
+document.addEventListener("DOMContentLoaded", () => {
+    initApp();
+    setupAdminTrigger();
+});
+
+function initApp() {
+    fetchRaces();
+    fetchStandings();
+    setupFilters();
+    setupLoginForm();
+    setupRaceForm();
+}
+
+// 1. DATA FETCHING (RACES)
+async function fetchRaces() {
+    try {
+        const { data, error } = await supabase
+            .from('races')
+            .select('*')
+            .order('race_date', { ascending: true });
+
+        if (error) throw error;
+        
+        allRaces = data || [];
+        renderRaces(allRaces);
+        startCountdown(allRaces);
+    } catch (err) {
+        console.error("Error fetching races:", err.message);
+        document.getElementById("races-list").innerHTML = `<div class='status-msg'>Failed to load schedules. Check Supabase connection.</div>`;
     }
 }
 
-// Real-Time Countdown Timer Logic Engine
-function initializeCountdown() {
-    // Setting up target race timing data marker (e.g. Next Saturday)
-    const targetRaceDate = new Date();
-    targetRaceDate.setDate(targetRaceDate.getDate() + (6 - targetRaceDate.getDay()) % 7);
-    targetRaceDate.setHours(11, 0, 0, 0); 
+function renderRaces(races) {
+    const listContainer = document.getElementById("races-list");
+    if (races.length === 0) {
+        listContainer.innerHTML = "<p style='color: #888;'>No upcoming races scheduled.</p>";
+        return;
+    }
 
-    function updateClock() {
+    listContainer.innerHTML = races.map(race => {
+        const dateObj = new Date(race.race_date);
+        const formattedDate = dateObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+        
+        return `
+            <div class="race-card" data-series="${race.series}">
+                <span class="badge ${race.series.toLowerCase()}">${race.series}</span>
+                <div class="track-name">${race.track_name}</div>
+                <div class="race-meta">${race.country || ''} | ${formattedDate}</div>
+            </div>
+        `;
+    }).join('');
+}
+
+// 2. DATA FETCHING (STANDINGS)
+async function fetchStandings() {
+    try {
+        const { data, error } = await supabase
+            .from('standings')
+            .select('*')
+            .order('series', { ascending: true })
+            .order('position', { ascending: true });
+
+        if (error) throw error;
+        renderStandings(data || []);
+    } catch (err) {
+        console.error("Error fetching standings:", err.message);
+        document.getElementById("standings-list").innerHTML = `<p style='color: #888;'>Standings table empty or RLS blocked.</p>`;
+    }
+}
+
+function renderStandings(standings) {
+    const listContainer = document.getElementById("standings-list");
+    if (standings.length === 0) {
+        listContainer.innerHTML = "<p style='color: #888;'>No standings calculated yet.</p>";
+        return;
+    }
+
+    listContainer.innerHTML = standings.map(row => `
+        <div class="standing-card">
+            <span class="badge ${row.series.toLowerCase()}">${row.series}</span>
+            <div class="track-name" style="font-size: 1.1rem;">P${row.position} ${row.driver_name}</div>
+            <div class="race-meta">${row.team_name || 'Privateer'} — <strong>${row.points} PTS</strong></div>
+        </div>
+    `).join('');
+}
+
+// 3. FILTER LOGIC
+function setupFilters() {
+    const buttons = document.querySelectorAll(".filter-btn");
+    buttons.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            buttons.forEach(b => b.classList.remove("active"));
+            e.target.classList.add("active");
+            
+            const selectedSeries = e.target.getAttribute("data-series");
+            if (selectedSeries === "all") {
+                renderRaces(allRaces);
+            } else {
+                const filtered = allRaces.filter(r => r.series === selectedSeries);
+                renderRaces(filtered);
+            }
+        });
+    });
+}
+
+// 4. LIVE HERO COUNTDOWN TIMER
+function startCountdown(races) {
+    const countdownEl = document.getElementById("countdown");
+    const upcoming = races.find(r => new Date(r.race_date) > new Date());
+
+    if (!upcoming) {
+        countdownEl.innerText = "NO UPCOMING RACES";
+        return;
+    }
+
+    const targetDate = new Date(upcoming.race_date).getTime();
+
+    const interval = setInterval(() => {
         const now = new Date().getTime();
-        const difference = targetRaceDate.getTime() - now;
+        const difference = targetDate - now;
 
-        if (difference <= 0) {
-            document.getElementById('countdown').innerHTML = "<span style='color: #e8186d; font-weight:700;'>RACE WEEKEND LIVE</span>";
-            clearInterval(clockInterval);
+        if (difference < 0) {
+            clearInterval(interval);
+            countdownEl.innerText = "RACE IS LIVE / CONCLUDED";
+            fetchRaces();
             return;
         }
 
@@ -36,106 +143,67 @@ function initializeCountdown() {
         const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-        document.getElementById('days').innerText = String(days).padStart(2, '0');
-        document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-        document.getElementById('mins').innerText = String(minutes).padStart(2, '0');
-        document.getElementById('secs').innerText = String(seconds).padStart(2, '0');
-    }
-
-    updateClock();
-    const clockInterval = setInterval(updateClock, 1000);
+        countdownEl.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
 }
 
-// Asynchronous Data Query Layer (GET)
-async function fetchChampionships() {
-    const listContainer = document.getElementById('championships-list');
-    
-    if (!window.supabase) {
-        setTimeout(fetchChampionships, 150);
-        return;
-    }
+// 5. HIDDEN ADMIN TOGGLE MECHANISM
+function setupAdminTrigger() {
+    const adminLink = document.getElementById("admin-nav");
+    const adminSection = document.getElementById("admin-trigger");
+    adminLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        adminSection.classList.toggle("hidden");
+        adminSection.scrollIntoView({ behavior: 'smooth' });
+    });
+}
 
-    if (!supabaseClient) {
-        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    }
+// 6. ADMIN AUTH (LOGIN WITH SUPABASE)
+function setupLoginForm() {
+    const form = document.getElementById("login-form");
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = document.getElementById("admin-email").value;
+        const password = document.getElementById("admin-password").value;
 
-    try {
-        let { data: championships, error } = await supabaseClient
-            .from('championships')
-            .select('*')
-            .order('created_at', { ascending: true });
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password,
+        });
 
-        if (error) throw error;
-        listContainer.innerHTML = '';
-
-        if (championships.length === 0) {
-            listContainer.innerHTML = `<p style="color: var(--text-gray)">No active championships deployed to grid database matrix.</p>`;
-            return;
+        if (error) {
+            alert("Verification Failed: " + error.message);
+        } else {
+            currentSessionUser = data.user;
+            form.classList.add("hidden");
+            document.getElementById("admin-dashboard").classList.remove("hidden");
         }
-
-        championships.forEach(item => {
-            listContainer.innerHTML += `
-                <div class="series-card">
-                    <span class="badge">${item.tier}</span>
-                    <h3>${item.code}</h3>
-                    <p style="color: var(--text-gray); font-size: 0.9rem; font-weight:600;">Lineup Capacity: ${item.drivers} Slots Registered</p>
-                </div>
-            `;
-        });
-    } catch (err) {
-        console.error(err);
-        listContainer.innerHTML = `<p style="color: #e8186d">Failed to extract active championship data grids.</p>`;
-    }
+    });
 }
 
-// Secured Transaction Interceptor (POST)
-async function handleAdminSubmit(e) {
-    e.preventDefault();
-    
-    if (!supabaseClient && window.supabase) {
-        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    }
+// 7. ADMIN FORM SUBMISSION (ADD NEW RACE)
+function setupRaceForm() {
+    const form = document.getElementById("race-form");
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-    const seriesCode = document.getElementById('seriesCode').value;
-    const seriesTier = document.getElementById('seriesTier').value;
-    const seriesDrivers = parseInt(document.getElementById('seriesDrivers').value);
+        const raceData = {
+            series: document.getElementById("race-series").value,
+            track_name: document.getElementById("race-track").value,
+            country: document.getElementById("race-country").value,
+            race_date: new Date(document.getElementById("race-date").value).toISOString()
+        };
 
-    const adminEmail = prompt("Enter Authorized Admin Email:");
-    const adminPassword = prompt("Enter Administrative Access Password:");
+        const { data, error } = await supabase
+            .from('races')
+            .insert([raceData]);
 
-    if (!adminEmail || !adminPassword) return;
-
-    try {
-        const { data: authData, error: authError } = await supabaseClient.auth.signInWithPassword({
-            email: adminEmail,
-            password: adminPassword,
-        });
-
-        if (authError) throw new Error(authError.message);
-
-        const { error: insertError } = await supabaseClient
-            .from('championships')
-            .insert([{ code: seriesCode, tier: seriesTier, drivers: seriesDrivers }]);
-
-        if (insertError) throw insertError;
-
-        alert("Database row updated successfully!");
-        await supabaseClient.auth.signOut();
-
-        fetchChampionships();
-        toggleModal(false);
-        document.getElementById('db-control-form').reset();
-    } catch (err) {
-        alert("Transaction Aborted: " + err.message);
-    }
+        if (error) {
+            alert("Database write error: " + error.message);
+        } else {
+            alert("SUCCESS! Race published live to Supabase.");
+            form.reset();
+            fetchRaces(); // Instantly update view data state
+        }
+    });
 }
-
-// App Initialization Hooks
-window.addEventListener('load', () => {
-    document.getElementById('adminBtn').addEventListener('click', () => toggleModal(true));
-    document.getElementById('closeAdminBtn').addEventListener('click', () => toggleModal(false));
-    document.getElementById('db-control-form').addEventListener('submit', handleAdminSubmit);
-    
-    initializeCountdown();
-    fetchChampionships();
-});
