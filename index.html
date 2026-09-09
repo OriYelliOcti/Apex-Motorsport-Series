@@ -3,43 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Velocity Motorsport Series | The Next Generation</title>
-    
-    <!-- Link to external fonts and styles -->
+    <title>VMS — Velocity Motorsport Series</title>
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Space+Grotesk:wght=500;700&display=swap" rel="stylesheet">
+    <!-- Premium Fonts for that aggressive racing look -->
+    <link href="https://googleapis.com/css2?family=Chalan:wght@900&family=Plus+Jakarta+Sans:wght@400;600;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-
-    <!-- Load Supabase Core Infrastructure (deferred to prevent lag) -->
+    
+    <!-- Supabase Infrastructure integration -->
     <script src="https://jsdelivr.net" defer></script>
-    <!-- Load your custom application script -->
     <script src="app.js" defer></script>
 </head>
 <body>
 
-    <!-- Main Navigation Header -->
+    <!-- Top Navigation Area -->
     <header>
-        <div class="logo">VMS<span>.</span></div>
-        <button class="admin-trigger" id="adminBtn">Admin Panel</button>
+        <div class="header-left">
+            <span class="logo-vms">VMS</span>
+            <span class="logo-sub">VELOCITY MOTORSPORT SERIES</span>
+        </div>
+        <div class="header-right">
+            <button class="nav-btn discord-btn">Discord</button>
+            <button class="nav-btn youtube-btn">YouTube</button>
+            <button class="admin-trigger-link" id="adminBtn">Race Control</button>
+        </div>
     </header>
 
-    <!-- Public Viewport -->
+    <!-- Sidebar Navigation Anchors -->
+    <nav class="sidebar">
+        <div class="sidebar-icon active">🏠</div>
+        <div class="sidebar-icon">🏁</div>
+        <div class="sidebar-icon">🏆</div>
+        <div class="sidebar-icon">⚙️</div>
+    </nav>
+
+    <!-- Main Viewport -->
     <main>
-        <section class="hero">
-            <h1>Built for Speed.<br>Driven by <span>Passion.</span></h1>
-            <p>We are more than telemetry and lap times. VMS is the heartbeat of a community shaping the champions of tomorrow.</p>
+        <!-- Hero Section directly modeled after your screenshot -->
+        <section class="hero-section">
+            <p class="season-badge">— 2026 SEASON • VMS CAREER LADDER</p>
+            <h1 class="hero-title">VELOCITY<br><span class="gradient-text">MOTORSPORT</span></h1>
+            
+            <p class="hero-description">
+                Four championships. One ladder. The home of open-wheel and endurance racing's next generation of champions — from Formula 3 to F1 glory and GT3 to Hypercar.
+            </p>
+
+            <div class="cta-group">
+                <button class="btn btn-primary">EXPLORE SERIES →</button>
+                <button class="btn btn-secondary">RACE CALENDAR</button>
+            </div>
+
+            <!-- Authentic Dashboard Stat Counters -->
+            <div class="stats-grid">
+                <div class="stat-box"><span class="stat-num">4</span><span class="stat-label">SERIES</span></div>
+                <div class="stat-box"><span class="stat-num">64+</span><span class="stat-label">DRIVERS</span></div>
+                <div class="stat-box"><span class="stat-num">16</span><span class="stat-label">ROUNDS</span></div>
+                <div class="stat-box"><span class="stat-num">20+</span><span class="stat-label">COUNTRIES</span></div>
+            </div>
+
+            <!-- Ticker and Countdown Status Bar -->
+            <div class="status-bar">
+                <div class="status-left">
+                    <span class="next-race-tag">NEXT RACE</span>
+                    <span class="race-name">QATAR GRAND PRIX</span>
+                    <span class="race-details">FORMULA 1 • FORMULA 2 • FORMULA 3 • ROUND 11</span>
+                </div>
+                <!-- Real-time dynamic JS Countdown Clock -->
+                <div class="countdown-clock" id="countdown">
+                    <div class="time-segment"><span id="days">00</span><label>DAYS</label></div>
+                    <div class="time-segment"><span id="hours">00</span><label>HRS</label></div>
+                    <div class="time-segment"><span id="mins">00</span><label>MIN</label></div>
+                    <div class="time-segment"><span id="secs">00</span><label>SEC</label></div>
+                </div>
+            </div>
         </section>
 
-        <section class="series-section">
-            <h2 class="section-title">Active Championships</h2>
-            <div class="series-container" id="championships-list">
-                <p class="loading-status">Connecting to track network...</p>
+        <!-- Live Dynamic Infoticker / Marquee Banner -->
+        <div class="ticker-wrap">
+            <div class="ticker">
+                <div class="ticker__item"><span class="highlight">VMS F1</span>: NICK LEADS WITH 154 PTS</div>
+                <div class="ticker__item">★ NICK WINS THE HOCKENHEIM GP ★</div>
+                <div class="ticker__item">NEXT: <span class="highlight">QATAR GRAND PRIX</span> SEP 12 - SEP 13</div>
+                <!-- Duplicated for seamless loops -->
+                <div class="ticker__item"><span class="highlight">VMS F1</span>: NICK LEADS WITH 154 PTS</div>
+                <div class="ticker__item">★ NICK WINS THE HOCKENHEIM GP ★</div>
+                <div class="ticker__item">NEXT: <span class="highlight">QATAR GRAND PRIX</span> SEP 12 - SEP 13</div>
+            </div>
+        </div>
+
+        <!-- Championships Content Hub handled by Supabase -->
+        <section class="championships-hub">
+            <h2 class="hub-title">— TITLE FIGHT<br><span class="big-title">CHAMPIONSHIP BATTLES</span></h2>
+            <div class="series-cards-grid" id="championships-list">
+                <p class="loading-text">Synchronizing telemetry data grids...</p>
             </div>
         </section>
     </main>
 
-    <!-- Administrative Configuration Overlay -->
+    <!-- Administrative Portal Overlay Modal -->
     <div class="modal" id="adminModal">
         <div class="modal-content">
             <h2>Add New Racing Series</h2>
