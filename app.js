@@ -1,15 +1,21 @@
 const SUPABASE_URL = "https://supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_-N5JX1LBBNUHxnOe9E5R4A_tyqDzvLT";
 
-const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
+let supabaseClient = null;
 let currentSessionUser = null;
 let allRaces = [];
 
 document.addEventListener("DOMContentLoaded", () => {
-    runIntroCinematic();
-    initApp();
-    setupAdminTrigger();
+    if (typeof supabase !== 'undefined') {
+        supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        runIntroCinematic();
+        initApp();
+        setupAdminTrigger();
+    } else {
+        console.error("Supabase library not loaded from CDN.");
+        const list = document.getElementById("races-list");
+        if (list) list.innerHTML = `<div class='race-meta'>Network Error: CDN library blocked or unavailable.</div>`;
+    }
 });
 
 function runIntroCinematic() {
@@ -40,6 +46,7 @@ function initApp() {
 }
 
 async function fetchRaces() {
+    if (!supabaseClient) return;
     try {
         const { data, error } = await supabaseClient
             .from('races')
@@ -83,6 +90,7 @@ function renderRaces(races) {
 }
 
 async function fetchStandings() {
+    if (!supabaseClient) return;
     try {
         const { data, error } = await supabaseClient
             .from('standings')
@@ -188,6 +196,7 @@ function setupLoginForm() {
     if (form) {
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
+            if (!supabaseClient) return;
             const email = document.getElementById("admin-email").value;
             const password = document.getElementById("admin-password").value;
 
@@ -213,6 +222,7 @@ function setupRaceForm() {
     if (form) {
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
+            if (!supabaseClient) return;
 
             const raceData = {
                 series: document.getElementById("race-series").value,
