@@ -1,4 +1,4 @@
-/* --- APEX RACING HYBRID GLOW LOOK (RACING RED & CYBER PINK) --- */
+/* --- APEX RACING OFFICIAL COLORWAY (CYAN & PINK) --- */
 * {
     margin: 0;
     padding: 0;
@@ -9,9 +9,9 @@
     --bg-dark-core: #050708;
     --panel-dark-sub: #0b0e11;
     --border-clean: rgba(255, 255, 255, 0.05);
-    --ams-red: #ff1801;
+    --ams-cyan: #00f0b5;
     --ams-pink: #ff007f;
-    --ams-red-glow: rgba(255, 24, 1, 0.15);
+    --ams-cyan-glow: rgba(0, 240, 181, 0.15);
     --ams-pink-glow: rgba(255, 0, 127, 0.15);
     --text-pure: #ffffff;
     --text-dimmed: #8a99ad;
@@ -42,7 +42,7 @@ body {
 .intro-car-streak {
     position: absolute;
     width: 200px; height: 4px;
-    background: linear-gradient(90deg, transparent, var(--ams-red), var(--ams-pink), transparent);
+    background: linear-gradient(90deg, transparent, var(--ams-cyan), var(--ams-pink), transparent);
     left: -300px; filter: blur(1px);
     animation: carZoom 0.8s cubic-bezier(0.7, 0, 0.3, 1) forwards;
     animation-delay: 0.3s;
@@ -63,7 +63,7 @@ body {
 
 @keyframes smoothDrop {
     0% { opacity: 0; transform: translateY(-40px); }
-    100% { opacity: 1; transform: translateY(0); filter: drop-shadow(0 0 20px var(--ams-red-glow)); }
+    100% { opacity: 1; transform: translateY(0); filter: drop-shadow(0 0 20px var(--ams-cyan-glow)); }
 }
 
 .shake-trigger { animation: screenShake 0.4s linear; }
@@ -115,7 +115,7 @@ header {
 }
 
 .logo { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 900; }
-.red-bar { color: var(--ams-red); text-shadow: 0 0 10px var(--ams-red-glow); }
+.red-bar { color: var(--ams-cyan); text-shadow: 0 0 10px var(--ams-cyan-glow); }
 nav { display: flex; align-items: center; }
 
 .nav-link {
@@ -134,10 +134,10 @@ nav { display: flex; align-items: center; }
     border-radius: 4px;
     background: rgba(255, 255, 255, 0.02);
 }
-.nav-link.login-btn:hover { background: var(--ams-pink); color: #fff; box-shadow: 0 0 15px var(--ams-pink-glow); }
+.nav-link.login-btn:hover { background: var(--ams-cyan); color: #000; box-shadow: 0 0 15px var(--ams-cyan-glow); }
 
 .hero-groove-wrapper {
-    background: radial-gradient(circle at 75% 30%, var(--ams-pink-glow) 0%, transparent 55%);
+    background: radial-gradient(circle at 75% 30%, var(--ams-cyan-glow) 0%, transparent 55%);
     border-bottom: 1px solid var(--border-clean);
 }
 
@@ -172,7 +172,7 @@ nav { display: flex; align-items: center; }
 }
 
 .hero-logo-wrapper { max-width: 320px; width: 100%; margin-bottom: 25px; }
-.ams-hero-logo { width: 100%; height: auto; display: block; filter: drop-shadow(0 0 25px var(--ams-red-glow)); }
+.ams-hero-logo { width: 100%; height: auto; display: block; filter: drop-shadow(0 0 25px var(--ams-cyan-glow)); }
 .hero-description {
     color: var(--text-dimmed);
     font-size: 1.15rem;
@@ -191,8 +191,8 @@ nav { display: flex; align-items: center; }
     border-radius: 6px;
     transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
-.btn-primary { background: var(--ams-pink); color: #fff; box-shadow: 0 0 25px var(--ams-pink-glow); }
-.btn-primary:hover { background: var(--ams-red); color: #fff; box-shadow: 0 0 25px var(--ams-red-glow); transform: translateY(-2px); }
+.btn-primary { background: var(--ams-cyan); color: #000; box-shadow: 0 0 25px var(--ams-cyan-glow); }
+.btn-primary:hover { background: var(--ams-pink); color: #fff; box-shadow: 0 0 25px var(--ams-pink-glow); transform: translateY(-2px); }
 .btn-secondary { background: rgba(255, 255, 255, 0.02); color: #fff; border: 1px solid var(--border-clean); }
 .btn-secondary:hover { background: rgba(255, 255, 255, 0.06); transform: translateY(-2px); }
 
@@ -245,7 +245,7 @@ nav { display: flex; align-items: center; }
     padding: 10px 22px; border-radius: 6px; cursor: pointer;
     transition: 0.2s;
 }
-.filter-node:hover, .filter-node.active { color: #fff; border-color: var(--ams-pink); background: rgba(255, 0, 127, 0.02); }
+.filter-node:hover, .filter-node.active { color: #fff; border-color: var(--ams-cyan); background: rgba(0, 240, 181, 0.02); }
 
 .dashboard-grid {
     display: grid;
@@ -260,7 +260,7 @@ nav { display: flex; align-items: center; }
     position: relative;
     transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
-.race-card:hover { border-color: rgba(255, 0, 127, 0.25); transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
+.race-card:hover { border-color: rgba(0, 240, 181, 0.25); transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
 
 .badge {
     position: absolute; top: 35px; right: 35px;
@@ -269,7 +269,7 @@ nav { display: flex; align-items: center; }
 .badge.formula-1 { color: var(--ams-pink); text-shadow: 0 0 10px var(--ams-pink-glow); }
 .badge.formula-2 { color: #00b0f0; }
 .badge.formula-3 { color: #fcc000; }
-.badge.gt3 { color: var(--ams-red); text-shadow: 0 0 10px var(--ams-red-glow); }
+.badge.gt3 { color: var(--ams-cyan); text-shadow: 0 0 10px var(--ams-cyan-glow); }
 
 .track-name { font-family: var(--font-heading); font-size: 1.35rem; margin-top: 15px; font-weight: 900; }
 .race-meta { color: var(--text-dimmed); font-size: 0.95rem; margin-top: 6px; }
@@ -341,12 +341,12 @@ nav { display: flex; align-items: center; }
     padding: 14px; color: #fff; border-radius: 6px; font-family: var(--font-ui); font-size: 1rem;
     transition: border-color 0.2s;
 }
-.form-group input:focus { outline: none; border-color: var(--ams-pink); }
+.form-group input:focus { outline: none; border-color: var(--ams-cyan); }
 
 .btn-portal-submit {
-    width: 100%; padding: 14px; background: var(--ams-pink); color: #fff;
+    width: 100%; padding: 14px; background: var(--ams-cyan); color: #000;
     border: none; font-family: var(--font-heading); font-weight: 900;
-    border-radius: 6px; cursor: pointer; font-size: 0.85rem; box-shadow: 0 0 20px var(--ams-pink-glow);
+    border-radius: 6px; cursor: pointer; font-size: 0.85rem; box-shadow: 0 0 20px var(--ams-cyan-glow);
     transition: all 0.2s;
 }
 .btn-portal-submit:hover { background: #fff; color: #000; box-shadow: none; }
@@ -361,7 +361,7 @@ nav { display: flex; align-items: center; }
     font-family: var(--font-heading); font-weight: 900; font-size: 0.8rem;
     padding: 6px 14px; border-radius: 4px; cursor: pointer; transition: 0.2s;
 }
-.btn-logout-portal:hover { border-color: var(--ams-pink); color: var(--ams-pink); }
+.btn-logout-portal:hover { border-color: var(--ams-cyan); color: var(--ams-cyan); }
 
 footer { padding: 50px 10%; border-top: 1px solid var(--border-clean); color: var(--text-dimmed); font-size: 0.9rem; }
 .footer-wrap { display: flex; justify-content: space-between; }
