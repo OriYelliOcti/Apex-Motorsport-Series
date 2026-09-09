@@ -1,65 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex Motorsport Series | AMS</title>
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <!-- REPARIERT: Kein Text-Fallback mehr, der durchschimmern kann -->
-    <div id="intro-overlay">
-        <div class="intro-car-streak"></div>
-        <img src="logo.png" alt="AMS" class="intro-logo-img" onerror="this.style.display='none'">
-    </div>
-
-    <div id="app-wrapper">
-        <div class="top-bar">
-            <div class="ticker-container">
-                <div class="ticker-track">
-                    NEXT EVENT: QATAR GRAND PRIX // FORMULA 1 // REGISTRATION IS OPENING NOW
-                </div>
-            </div>
-            <div class="social-actions">
-                <a href="#" class="social-btn discord">Discord</a>
-                <a href="#" class="social-btn youtube">YouTube</a>
-            </div>
-        </div>
-
-        <header>
-            <div class="logo">AMS<span class="red-bar">/</span></div>
-            <nav>
-                <a href="#schedule" class="nav-link active">SCHEDULE</a>
-                <a href="#standings" class="nav-link">STANDINGS</a>
-                <a href="#lineups" class="nav-link">LINEUPS</a>
-                <a href="#admin-trigger" id="admin-nav" class="nav-link login-btn">DASHBOARD</a>
-            </nav>
-        </header>
-
-        <main>
-            <!-- REPARIERT: Richtige Klassen-Verschachtelung für das ZeBeyond-Layout -->
-            <section class="hero-banner">
-                <div class="hero-content">
-                    <div class="hero-badge">2026 SEASON // AMS LEAGUE</div>
-                    <div class="hero-logo-wrapper">
-                        <img src="logo.png" alt="Apex Motorsport Series" class="ams-hero-logo" onerror="this.style.display='none'">
-                    </div>
-                    <p class="hero-description">Four championships. One ladder. The home of open-wheel and GT3 racing's next generation of champions.</p>
-                    <div class="hero-buttons">
-                        <a href="#lineups" class="btn-primary">EXPLORE SERIES</a>
-                        <a href="#schedule" class="btn-secondary">RACE CALENDAR</a>
-                    </div>
-                </div>
-                <div class="hero-countdown-box">
-                    <div class="countdown-label">NEXT RACE COUNTDOWN</div>
-                    <div id="countdown" class="timer-display">00:00:00:00</div>
-                </div>
-            </section>
-
             <section id="schedule" class="dashboard-section">
                 <div class="section-header">
                     <h3 class="section-heading">RACE CALENDAR</h3>
@@ -99,10 +37,11 @@
                     <h3 class="section-heading">PORTAL LOG IN</h3>
                 </div>
                 <div class="portal-container">
+                    <!-- REPARIERT: Kein vordefinierter Standardwert mehr bei der Mail -->
                     <form id="login-form" class="portal-form">
                         <div class="form-group">
                             <label>ACCOUNT EMAIL</label>
-                            <input type="email" id="admin-email" value="eduardofucucuu@gmail.com">
+                            <input type="email" id="admin-email" required placeholder="operator@apex.com">
                         </div>
                         <div class="form-group">
                             <label>ACCOUNT PASSWORD</label>
@@ -148,7 +87,7 @@
         <footer>
             <div class="footer-wrap">
                 <div>&copy; 2026 APEX MOTORSPORT SERIES.</div>
-                <div class="footer-version">v3.5 // PREMIUM HIGH-TECH ENGINE</div>
+                <div class="footer-version">v3.6 // NET_GROOVE ENGINE</div>
             </div>
         </footer>
     </div>
