@@ -18,172 +18,177 @@
     </div>
 
     <div id="app-wrapper">
-        <div class="ticker-wrap">
-            <div class="ticker">
-                <div class="ticker__item">+++ AMS SEASON INCOMING +++</div>
-                <div class="ticker__item">SERIES: FORMULA 1, FORMULA 2, FORMULA 3, GT3 +++</div>
-                <div class="ticker__item">REGISTRATION IS OPENING NOW +++</div>
-                <div class="ticker__item">CONNECTING TO SUPABASE LIVE MATRIX +++</div>
+        <!-- PREMIUM TOP ACTION BAR -->
+        <div class="top-bar">
+            <div class="ticker-container">
+                <div class="ticker-track">
+                    NEXT EVENT: QATAR GRAND PRIX // FORMULA 1 // REGISTRATION IS OPENING NOW
+                </div>
+            </div>
+            <div class="social-actions">
+                <a href="#" class="social-btn discord">Discord</a>
+                <a href="#" class="social-btn youtube">YouTube</a>
             </div>
         </div>
 
+        <!-- MAIN HEADER / NAVIGATION -->
         <header>
             <div class="logo">AMS<span class="red-bar">/</span></div>
             <nav>
-                <a href="#schedule" class="nav-link active">01. SCHEDULE</a>
-                <a href="#standings" class="nav-link">02. STANDINGS</a>
-                <a href="#lineups" class="nav-link">03. LINEUPS</a>
-                <a href="#admin-trigger" id="admin-nav" class="nav-link login-btn">// LOCK_IN</a>
+                <a href="#schedule" class="nav-link active">SCHEDULE</a>
+                <a href="#standings" class="nav-link">STANDINGS</a>
+                <a href="#lineups" class="nav-link">LINEUPS</a>
+                <a href="#admin-trigger" id="admin-nav" class="nav-link login-btn">DASHBOARD</a>
             </nav>
         </header>
 
         <main>
-            <section class="bento-hero">
-                <div class="bento-main">
-                    <div class="sys-badge">// AMS NETWORK CORE ONLINE</div>
-                    <div class="hero-logo-container">
+            <!-- DASHBOARD HERO BANNER -->
+            <section class="hero-banner">
+                <div class="hero-content">
+                    <div class="hero-badge">2026 SEASON // AMS LEAGUE</div>
+                    <div class="hero-logo-wrapper">
                         <img src="logo.png" alt="Apex Motorsport Series" class="ams-hero-logo" onerror="this.style.display='none'">
                     </div>
-                    <h2 class="sub-title">APEX MOTORSPORT SERIES</h2>
+                    <p class="hero-description">Four championships. One ladder. The home of open-wheel and GT3 racing's next generation of champions.</p>
+                    <div class="hero-buttons">
+                        <a href="#lineups" class="btn-primary">EXPLORE SERIES</a>
+                        <a href="#schedule" class="btn-secondary">RACE CALENDAR</a>
+                    </div>
                 </div>
-                
-                <div class="bento-countdown">
-                    <div class="countdown-title">NEXT GRID EVENT T-MINUS</div>
-                    <div id="countdown">00:00:00:00</div>
+                <div class="hero-countdown-box">
+                    <div class="countdown-label">NEXT RACE COUNTDOWN</div>
+                    <div id="countdown" class="timer-display">00:00:00:00</div>
                 </div>
             </section>
 
-            <section id="schedule" class="content-section">
+            <!-- LIVE SCHEDULE MATRIX -->
+            <section id="schedule" class="dashboard-section">
                 <div class="section-header">
-                    <h3 class="section-title"><span>01//</span> LIVE RACE SCHEDULE</h3>
+                    <h3 class="section-heading">RACE CALENDAR</h3>
                     <div class="series-filter">
-                        <button class="filter-btn active" data-series="all">ALL UNITS</button>
-                        <button class="filter-btn" data-series="Formula 1">FORMULA 1</button>
-                        <button class="filter-btn" data-series="Formula 2">FORMULA 2</button>
-                        <button class="filter-btn" data-series="Formula 3">FORMULA 3</button>
-                        <button class="filter-btn" data-series="GT3">GT3 ONLY</button>
+                        <button class="filter-node active" data-series="all">ALL</button>
+                        <button class="filter-node" data-series="Formula 1">FORMULA 1</button>
+                        <button class="filter-node" data-series="Formula 2">FORMULA 2</button>
+                        <button class="filter-node" data-series="Formula 3">FORMULA 3</button>
+                        <button class="filter-node" data-series="GT3">GT3</button>
                     </div>
                 </div>
-                <div id="races-list" class="grid-container">
-                    <div class="loading">Loading array data...</div>
+                <div id="races-list" class="dashboard-grid">
+                    <div class="loading">Loading calendar array...</div>
                 </div>
             </section>
 
-            <section id="standings" class="content-section">
+            <!-- DRIVER STANDINGS / DYNAMIC BATTLE BARS -->
+            <section id="standings" class="dashboard-section">
                 <div class="section-header">
-                    <h3 class="section-title"><span>02//</span> DRIVER STANDINGS</h3>
+                    <h3 class="section-heading">CHAMPIONSHIP BATTLES</h3>
                 </div>
-                <div id="standings-list" class="grid-container">
-                    <div class="loading">Syncing database matrix...</div>
+                <div id="standings-list" class="dashboard-grid">
+                    <div class="loading">Syncing standings matrix...</div>
                 </div>
             </section>
 
-            <section id="lineups" class="content-section">
+            <!-- TEAM LINEUPS SECTION -->
+            <section id="lineups" class="dashboard-section">
                 <div class="section-header">
-                    <h3 class="section-title"><span>03//</span> TEAM LINEUPS</h3>
+                    <h3 class="section-heading">OFFICIAL LINEUPS</h3>
                 </div>
-                
                 <div class="lineup-grid">
-                    <div class="driver-card">
-                        <div class="driver-avatar-frame">
-                            <img src="avatar1.png" alt="Driver Avatar" onerror="this.src='https://dicebear.com'">
+                    <div class="driver-profile-card">
+                        <div class="driver-avatar-box">
+                            <img src="avatar1.png" alt="Driver" onerror="this.src='https://dicebear.com'">
                         </div>
-                        <div class="driver-info">
-                            <div class="driver-tier f1">FORMULA 1</div>
-                            <div class="driver-name">Felix Wagner</div>
-                            <div class="driver-team">Apex Racing Team</div>
+                        <div class="driver-details">
+                            <span class="series-tag f1">FORMULA 1</span>
+                            <h4>Felix Wagner</h4>
+                            <p>Apex Racing Team</p>
                         </div>
-                        <div class="card-corner-tag">#01</div>
+                        <div class="driver-number">#01</div>
                     </div>
 
-                    <div class="driver-card">
-                        <div class="driver-avatar-frame">
-                            <img src="avatar2.png" alt="Driver Avatar" onerror="this.src='https://dicebear.com'">
+                    <div class="driver-profile-card">
+                        <div class="driver-avatar-box">
+                            <img src="avatar2.png" alt="Driver" onerror="this.src='https://dicebear.com'">
                         </div>
-                        <div class="driver-info">
-                            <div class="driver-tier f1">FORMULA 1</div>
-                            <div class="driver-name">Ori Octi</div>
-                            <div class="driver-team">Red Bull Racing</div>
+                        <div class="driver-details">
+                            <span class="series-tag f1">FORMULA 1</span>
+                            <h4>Ori Octi</h4>
+                            <p>Red Bull Racing</p>
                         </div>
-                        <div class="card-corner-tag">#07</div>
+                        <div class="driver-number">#07</div>
                     </div>
 
-                    <div class="driver-card">
-                        <div class="driver-avatar-frame">
-                            <img src="avatar3.png" alt="Driver Avatar" onerror="this.src='https://dicebear.com'">
+                    <div class="driver-profile-card">
+                        <div class="driver-avatar-box">
+                            <img src="avatar3.png" alt="Driver" onerror="this.src='https://dicebear.com'">
                         </div>
-                        <div class="driver-info">
-                            <div class="driver-tier gt3">GT3</div>
-                            <div class="driver-name">Marc Engel</div>
-                            <div class="driver-team">Mercedes AMG</div>
+                        <div class="driver-details">
+                            <span class="series-tag gt3">GT3</span>
+                            <h4>Marc Engel</h4>
+                            <p>Mercedes AMG</p>
                         </div>
-                        <div class="card-corner-tag">#44</div>
+                        <div class="driver-number">#44</div>
                     </div>
                 </div>
             </section>
 
-            <!-- VISIBLE DRIVER / ADMIN TERMINAL LOGIN SECTION -->
-            <section id="admin-trigger" class="content-section admin-section hidden">
+            <!-- PORTAL LOGIN / TERMINAL FOR OWNER -->
+            <section id="admin-trigger" class="dashboard-section admin-section hidden">
                 <div class="section-header">
-                    <h3 class="section-title"><span>04//</span> SECURE TERMINAL LINK</h3>
+                    <h3 class="section-heading">PORTAL LOG IN</h3>
                 </div>
-                
-                <div class="login-wrapper">
-                    <form id="login-form" class="admin-form">
-                        <div class="terminal-status-bar">AUTHENTICATION_REQUIRED</div>
+                <div class="portal-container">
+                    <form id="login-form" class="portal-form">
                         <div class="form-group">
-                            <label>OPERATOR IDENTITY (EMAIL)</label>
-                            <input type="email" id="admin-email" value="eduardofucucuu@gmail.com" placeholder="driver@apex.com">
+                            <label>ACCOUNT EMAIL</label>
+                            <input type="email" id="admin-email" value="eduardofucucuu@gmail.com">
                         </div>
                         <div class="form-group">
-                            <label>ENCRYPTION PASSKEY</label>
+                            <label>ACCOUNT PASSWORD</label>
                             <input type="password" id="admin-password" required placeholder="••••••••">
                         </div>
-                        <button type="submit" class="btn-submit">INITIALIZE OVERRIDE</button>
+                        <button type="submit" class="btn-portal-submit">LOG IN</button>
                     </form>
                 </div>
 
                 <div id="admin-dashboard" class="hidden">
-                    <div class="dashboard-header-panel">
-                        <p class="status-msg success">[ACCESS GRANTED] — TERMINAL STATE: ACTIVE</p>
-                        <button id="logout-btn" class="terminal-logout">// DISCONNECT</button>
+                    <div class="dashboard-control-bar">
+                        <span>CONTROL INTERFACE ACTIVE</span>
+                        <button id="logout-btn" class="btn-logout-portal">LOG OUT</button>
                     </div>
-                    
-                    <div class="form-grid-admin">
-                        <form id="race-form" class="admin-form">
-                            <div class="terminal-status-bar success-bar">DATABASE INJECTION MATRIX</div>
-                            <div class="form-group">
-                                <label>Series Tier</label>
-                                <select id="race-series">
-                                    <option value="Formula 1">Formula 1</option>
-                                    <option value="Formula 2">Formula 2</option>
-                                    <option value="Formula 3">Formula 3</option>
-                                    <option value="GT3">GT3</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Circuit / Track</label>
-                                <input type="text" id="race-track" required placeholder="e.g. Monza Circuit">
-                            </div>
-                            <div class="form-group">
-                                <label>Country</label>
-                                <input type="text" id="race-country" required placeholder="e.g. Italy">
-                            </div>
-                            <div class="form-group">
-                                <label>Race Timestamp</label>
-                                <input type="datetime-local" id="race-date" required>
-                            </div>
-                            <button type="submit" class="btn-submit ams-red-btn">DEPLOY LIVE EVENT</button>
-                        </form>
-                    </div>
+                    <form id="race-form" class="portal-form" style="margin-top: 20px;">
+                        <div class="form-group">
+                            <label>Series Tier</label>
+                            <select id="race-series">
+                                <option value="Formula 1">Formula 1</option>
+                                <option value="Formula 2">Formula 2</option>
+                                <option value="Formula 3">Formula 3</option>
+                                <option value="GT3">GT3</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Circuit / Track</label>
+                            <input type="text" id="race-track" required placeholder="e.g. Monza Circuit">
+                        </div>
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text" id="race-country" required placeholder="e.g. Italy">
+                        </div>
+                        <div class="form-group">
+                            <label>Race Timestamp</label>
+                            <input type="datetime-local" id="race-date" required>
+                        </div>
+                        <button type="submit" class="btn-portal-submit red-btn">PUBLISH TO MATRIX</button>
+                    </form>
                 </div>
             </section>
         </main>
 
         <footer>
-            <div class="footer-grid">
-                <div>&copy; 2026 APEX MOTORSPORT SERIES. SECURE NETWORK CORES.</div>
-                <div class="footer-stamp">SYSTEM_REPLICA_V3.2</div>
+            <div class="footer-wrap">
+                <div>&copy; 2026 APEX MOTORSPORT SERIES.</div>
+                <div class="footer-version">v3.3 // DESIGN ENGINE</div>
             </div>
         </footer>
     </div>
