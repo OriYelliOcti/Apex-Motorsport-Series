@@ -11,9 +11,11 @@
 </head>
 <body>
 
+    <!-- INTRO OVERLAY WITHOUT THE SIDE LINE - SMOOTH SLIDE DOWN -->
     <div id="intro-overlay">
         <div class="intro-car-streak"></div>
-        <div class="intro-logo">AMS</div>
+        <img src="logo.png" alt="AMS" class="intro-logo-img" onerror="this.style.display='none'">
+        <div class="intro-logo-fallback">AMS</div>
     </div>
 
     <div id="app-wrapper">
@@ -29,46 +31,105 @@
         <header>
             <div class="logo">AMS<span class="red-bar">/</span></div>
             <nav>
-                <a href="#schedule" class="active">SCHEDULE</a>
-                <a href="#standings">STANDINGS</a>
-                <a href="#admin-trigger" id="admin-nav">TERMINAL</a>
+                <a href="#schedule" class="nav-link active">01. SCHEDULE</a>
+                <a href="#standings" class="nav-link">02. STANDINGS</a>
+                <a href="#lineups" class="nav-link">03. LINEUPS</a>
+                <a href="#admin-trigger" id="admin-nav" class="nav-link">04. TERMINAL</a>
             </nav>
         </header>
 
         <main>
-            <section class="hero">
-                <h1 class="ams-title">APEX</h1>
-                <h2 class="sub-title">MOTORSPORT SERIES</h2>
+            <!-- HERO WITH REAL LOGO IMAGE AND FULL LEAGUE NAME BELOW -->
+            <section class="bento-hero">
+                <div class="bento-main">
+                    <div class="sys-badge">// AMS NETWORK CORE ONLINE</div>
+                    <div class="hero-logo-container">
+                        <img src="logo.png" alt="Apex Motorsport Series" class="ams-hero-logo" onerror="this.style.display='none'">
+                    </div>
+                    <h2 class="sub-title">APEX MOTORSPORT SERIES</h2>
+                </div>
                 
-                <div class="countdown-container">
-                    <div class="countdown-title">NEXT RAMP EVENT T-MINUS</div>
-                    <div id="countdown">00d 00h 00m 00s</div>
+                <div class="bento-countdown">
+                    <div class="countdown-title">NEXT GRID EVENT T-MINUS</div>
+                    <div id="countdown">00:00:00:00</div>
                 </div>
             </section>
 
+            <!-- SCHEDULE SECTION -->
             <section id="schedule" class="content-section">
-                <h3 class="section-title">LIVE RACE SCHEDULE</h3>
-                <div class="series-filter">
-                    <button class="filter-btn active" data-series="all">ALL</button>
-                    <button class="filter-btn" data-series="Formula 1">FORMULA 1</button>
-                    <button class="filter-btn" data-series="Formula 2">FORMULA 2</button>
-                    <button class="filter-btn" data-series="Formula 3">FORMULA 3</button>
-                    <button class="filter-btn" data-series="GT3">GT3</button>
+                <div class="section-header">
+                    <h3 class="section-title"><span>01//</span> LIVE RACE SCHEDULE</h3>
+                    <div class="series-filter">
+                        <button class="filter-btn active" data-series="all">ALL UNITS</button>
+                        <button class="filter-btn" data-series="Formula 1">FORMULA 1</button>
+                        <button class="filter-btn" data-series="Formula 2">FORMULA 2</button>
+                        <button class="filter-btn" data-series="Formula 3">FORMULA 3</button>
+                        <button class="filter-btn" data-series="GT3">GT3 ONLY</button>
+                    </div>
                 </div>
                 <div id="races-list" class="grid-container">
-                    <div class="loading">Fetching live grid array...</div>
+                    <div class="loading">Loading array data...</div>
                 </div>
             </section>
 
+            <!-- STANDINGS SECTION -->
             <section id="standings" class="content-section">
-                <h3 class="section-title">DRIVER STANDINGS</h3>
+                <div class="section-header">
+                    <h3 class="section-title"><span>02//</span> DRIVER STANDINGS</h3>
+                </div>
                 <div id="standings-list" class="grid-container">
-                    <div class="loading">Syncing leaderboard database...</div>
+                    <div class="loading">Syncing database matrix...</div>
                 </div>
             </section>
 
+            <!-- LINEUPS SECTION -->
+            <section id="lineups" class="content-section">
+                <div class="section-header">
+                    <h3 class="section-title"><span>03//</span> TEAM LINEUPS</h3>
+                </div>
+                
+                <div class="lineup-grid">
+                    <div class="driver-card">
+                        <div class="driver-avatar-frame">
+                            <img src="avatar1.png" alt="Driver Avatar" onerror="this.src='https://dicebear.com'">
+                        </div>
+                        <div class="driver-info">
+                            <div class="driver-tier f1">FORMULA 1</div>
+                            <div class="driver-name">Felix Wagner</div>
+                            <div class="driver-team">Apex Racing Team</div>
+                        </div>
+                        <div class="card-corner-tag">#01</div>
+                    </div>
+
+                    <div class="driver-card">
+                        <div class="driver-avatar-frame">
+                            <img src="avatar2.png" alt="Driver Avatar" onerror="this.src='https://dicebear.com'">
+                        </div>
+                        <div class="driver-info">
+                            <div class="driver-tier f1">FORMULA 1</div>
+                            <div class="driver-name">Ori Octi</div>
+                            <div class="driver-team">Red Bull Racing</div>
+                        </div>
+                        <div class="card-corner-tag">#07</div>
+                    </div>
+
+                    <div class="driver-card">
+                        <div class="driver-avatar-frame">
+                            <img src="avatar3.png" alt="Driver Avatar" onerror="this.src='https://dicebear.com'">
+                        </div>
+                        <div class="driver-info">
+                            <div class="driver-tier gt3">GT3</div>
+                            <div class="driver-name">Marc Engel</div>
+                            <div class="driver-team">Mercedes AMG</div>
+                        </div>
+                        <div class="card-corner-tag">#44</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HIDDEN OWNER TERMINAL SECTION -->
             <section id="admin-trigger" class="content-section admin-section hidden">
-                <h3 class="section-title">ADMIN CONTROL PANEL</h3>
+                <h3 class="section-title"><span>04//</span> OWNER TERMINAL ACCESS</h3>
                 
                 <form id="login-form" class="admin-form">
                     <div class="form-group">
@@ -77,14 +138,13 @@
                     </div>
                     <div class="form-group">
                         <label>SECURITY KEY</label>
-                        <input type="password" id="admin-password" required placeholder="••••••••">
+                        <input type="password" id="admin-password" required placeholder="ENTER OVERRIDE KEY">
                     </div>
-                    <button type="submit" class="btn-submit">VERIFY CREDENTIALS</button>
+                    <button type="submit" class="btn-submit">EXECUTE INITIALIZATION</button>
                 </form>
 
                 <div id="admin-dashboard" class="hidden">
                     <p class="status-msg success">Access Granted. Terminal Link Established.</p>
-                    <h4 style="color: #fff; margin-bottom: 15px; font-family: 'Orbitron';">Inject New Event Block</h4>
                     <form id="race-form" class="admin-form">
                         <div class="form-group">
                             <label>Series Tier</label>
@@ -114,11 +174,13 @@
         </main>
 
         <footer>
-            <p>&copy; 2026 APEX MOTORSPORT SERIES. ALL CODE ARCHIVED SECURELY.</p>
+            <div class="footer-grid">
+                <div>&copy; 2026 APEX MOTORSPORT SERIES. SECURE NETWORK CORES.</div>
+                <div class="footer-stamp">SYSTEM_REPLICA_V3.1</div>
+            </div>
         </footer>
     </div>
 
-    <!-- Erst unpkg laden, dann lokales Script aufrufen -->
     <script src="https://unpkg.com"></script>
     <script src="app.js"></script>
 </body>
