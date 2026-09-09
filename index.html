@@ -4,26 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apex Motorsport Series | AMS</title>
-    <!-- Markante Racing- und Technik-Schriftarten -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
-    <!-- Supabase CDN Library -->
     <script src="https://jsdelivr.net"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- ZOOM & SHAKE INTRO OVERLAY -->
     <div id="intro-overlay">
         <div class="intro-car-streak"></div>
         <div class="intro-logo">AMS</div>
     </div>
 
-    <!-- MAIN WEBSITE CONTENT CONTAINER (For Screen Shake Effect) -->
     <div id="app-wrapper">
-        
-        <!-- LIVE NEWS TICKER -->
         <div class="ticker-wrap">
             <div class="ticker">
                 <div class="ticker__item">+++ AMS SEASON INCOMING +++</div>
@@ -43,7 +37,6 @@
         </header>
 
         <main>
-            <!-- HERO SECTION WITH COUNTDOWN -->
             <section class="hero">
                 <h1 class="ams-title">APEX</h1>
                 <h2 class="sub-title">MOTORSPORT SERIES</h2>
@@ -54,7 +47,6 @@
                 </div>
             </section>
 
-            <!-- SCHEDULE SECTION -->
             <section id="schedule" class="content-section">
                 <h3 class="section-title">LIVE RACE SCHEDULE</h3>
                 <div class="series-filter">
@@ -69,7 +61,6 @@
                 </div>
             </section>
 
-            <!-- STANDINGS SECTION -->
             <section id="standings" class="content-section">
                 <h3 class="section-title">DRIVER STANDINGS</h3>
                 <div id="standings-list" class="grid-container">
@@ -77,11 +68,9 @@
                 </div>
             </section>
 
-            <!-- HIDDEN ADMIN SECTION -->
             <section id="admin-trigger" class="content-section admin-section hidden">
                 <h3 class="section-title">ADMIN CONTROL PANEL</h3>
                 
-                <!-- Auth Form -->
                 <form id="login-form" class="admin-form">
                     <div class="form-group">
                         <label>OPERATOR EMAIL</label>
@@ -94,10 +83,8 @@
                     <button type="submit" class="btn-submit">VERIFY CREDENTIALS</button>
                 </form>
 
-                <!-- Dashboard Form -->
                 <div id="admin-dashboard" class="hidden">
                     <p class="status-msg success">Access Granted. Terminal Link Established.</p>
-                    
                     <h4 style="color: #fff; margin-bottom: 15px; font-family: 'Orbitron';">Inject New Event Block</h4>
                     <form id="race-form" class="admin-form">
                         <div class="form-group">
@@ -132,6 +119,6 @@
         </footer>
     </div>
 
-    <script src="app.js"></script>
+    <script src="app.js" defer></script>
 </body>
 </html>

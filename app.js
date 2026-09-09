@@ -1,5 +1,4 @@
-// ⚠️ SUPABASE CONNECTION DATA
-const SUPABASE_URL = "https://ikzquusxwdazhztkafjt.supabase.co";
+const SUPABASE_URL = "https://supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_-N5JX1LBBNUHxnOe9E5R4A_tyqDzvLT";
 
 const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -13,23 +12,19 @@ document.addEventListener("DOMContentLoaded", () => {
     setupAdminTrigger();
 });
 
-// ZOOM & SCREEN SHAKE ENGINE ROUTINE
 function runIntroCinematic() {
     const overlay = document.getElementById("intro-overlay");
     const wrapper = document.getElementById("app-wrapper");
 
-    // 1. Nach Ablauf der Auto-Zisch-Animation (1.1s total) blenden wir das Overlay aus
     setTimeout(() => {
-        overlay.style.opacity = "0";
+        if (overlay) overlay.style.opacity = "0";
         
-        // 2. Genau beim Verschwinden des Overlays knallt das Auto vorbei -> Screen Shake!
         setTimeout(() => {
-            overlay.classList.add("hidden");
-            wrapper.classList.add("shake-trigger");
+            if (overlay) overlay.classList.add("hidden");
+            if (wrapper) wrapper.classList.add("shake-trigger");
             
-            // Entfernt die Klasse danach wieder, damit die Seite normal bedienbar bleibt
             setTimeout(() => {
-                wrapper.classList.remove("shake-trigger");
+                if (wrapper) wrapper.classList.remove("shake-trigger");
             }, 500);
         }, 300);
 
@@ -44,7 +39,6 @@ function initApp() {
     setupRaceForm();
 }
 
-// 1. DATA STRATA FETCHING (RACES)
 async function fetchRaces() {
     try {
         const { data, error } = await supabase
@@ -58,13 +52,16 @@ async function fetchRaces() {
         renderRaces(allRaces);
         startCountdown(allRaces);
     } catch (err) {
-        console.error("Database connection failure:", err.message);
-        document.getElementById("races-list").innerHTML = `<div class='race-meta'>Failed to load data arrays from Supabase.</div>`;
+        console.error(err.message);
+        const list = document.getElementById("races-list");
+        if (list) list.innerHTML = `<div class='race-meta'>Failed to load data arrays from Supabase.</div>`;
     }
 }
 
 function renderRaces(races) {
     const listContainer = document.getElementById("races-list");
+    if (!listContainer) return;
+
     if (races.length === 0) {
         listContainer.innerHTML = "<p style='color: #666;'>No upcoming events on the grid.</p>";
         return;
@@ -73,8 +70,6 @@ function renderRaces(races) {
     listContainer.innerHTML = races.map(race => {
         const dateObj = new Date(race.race_date);
         const formattedDate = dateObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false });
-        
-        // CSS-Klassensicherer String für Tiers
         const badgeClass = race.series.toLowerCase().replace(" ", "-");
         
         return `
@@ -87,7 +82,6 @@ function renderRaces(races) {
     }).join('');
 }
 
-// 2. DATA STRATA FETCHING (STANDINGS)
 async function fetchStandings() {
     try {
         const { data, error } = await supabase
@@ -99,13 +93,16 @@ async function fetchStandings() {
         if (error) throw error;
         renderStandings(data || []);
     } catch (err) {
-        console.error("Database connection failure:", err.message);
-        document.getElementById("standings-list").innerHTML = `<p style='color: #666;'>Standings block array currently unavailable.</p>`;
+        console.error(err.message);
+        const list = document.getElementById("standings-list");
+        if (list) list.innerHTML = `<p style='color: #666;'>Standings block array currently unavailable.</p>`;
     }
 }
 
 function renderStandings(standings) {
     const listContainer = document.getElementById("standings-list");
+    if (!listContainer) return;
+
     if (standings.length === 0) {
         listContainer.innerHTML = "<p style='color: #666;'>Standings data stack currently uncalculated.</p>";
         return;
@@ -123,7 +120,6 @@ function renderStandings(standings) {
     }).join('');
 }
 
-// 3. FILTER NODES
 function setupFilters() {
     const buttons = document.querySelectorAll(".filter-btn");
     buttons.forEach(btn => {
@@ -142,9 +138,10 @@ function setupFilters() {
     });
 }
 
-// 4. CHRONO SYSTEM COUNTER
 function startCountdown(races) {
     const countdownEl = document.getElementById("countdown");
+    if (!countdownEl) return;
+
     const upcoming = races.find(r => new Date(r.race_date) > new Date());
 
     if (!upcoming) {
@@ -174,63 +171,68 @@ function startCountdown(races) {
     }, 1000);
 }
 
-// 5. TERMINAL TOGGLE ROUTINE
 function setupAdminTrigger() {
     const adminLink = document.getElementById("admin-nav");
     const adminSection = document.getElementById("admin-trigger");
-    adminLink.addEventListener("click", (e) => {
-        e.preventDefault();
-        adminSection.classList.toggle("hidden");
-        adminSection.scrollIntoView({ behavior: 'smooth' });
-    });
+    if (adminLink && adminSection) {
+        adminLink.addEventListener("click", (e) => {
+            e.preventDefault();
+            adminSection.classList.toggle("hidden");
+            adminSection.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
 }
 
-// 6. TERMINAL SIGN IN
 function setupLoginForm() {
     const form = document.getElementById("login-form");
-    form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const email = document.getElementById("admin-email").value;
-        const password = document.getElementById("admin-password").value;
+    if (form) {
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = document.getElementById("admin-email").value;
+            const password = document.getElementById("admin-password").value;
 
-        const { data, error } = await supabase.auth.signInWithPassword({
-            email: email,
-            password: password,
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: email,
+                password: password,
+            });
+
+            if (error) {
+                alert("Verification Failed: " + error.message);
+            } else {
+                currentSessionUser = data.user;
+                form.classList.add("hidden");
+                const dashboard = document.getElementById("admin-dashboard");
+                if (dashboard) dashboard.classList.remove("hidden");
+            }
         });
-
-        if (error) {
-            alert("Verification Failed: " + error.message);
-        } else {
-            currentSessionUser = data.user;
-            form.classList.add("hidden");
-            document.getElementById("admin-dashboard").classList.remove("hidden");
-        }
-    });
+    }
 }
 
 // 7. BROADCAST STRUCTURAL BLOCK
 function setupRaceForm() {
     const form = document.getElementById("race-form");
-    form.addEventListener("submit", async (e) => {
-        e.preventDefault();
+    if (form) {
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
 
-        const raceData = {
-            series: document.getElementById("race-series").value,
-            track_name: document.getElementById("race-track").value,
-            country: document.getElementById("race-country").value,
-            race_date: new Date(document.getElementById("race-date").value).toISOString()
-        };
+            const raceData = {
+                series: document.getElementById("race-series").value,
+                track_name: document.getElementById("race-track").value,
+                country: document.getElementById("race-country").value,
+                race_date: new Date(document.getElementById("race-date").value).toISOString()
+            };
 
-        const { data, error } = await supabase
-            .from('races')
-            .insert([raceData]);
+            const { data, error } = await supabase
+                .from('races')
+                .insert([raceData]);
 
-        if (error) {
-            alert("Database write error: " + error.message);
-        } else {
-            alert("SUCCESS! Event posted live into the AMS matrix.");
-            form.reset();
-            fetchRaces();
-        }
-    });
+            if (error) {
+                alert("Database write error: " + error.message);
+            } else {
+                alert("SUCCESS! Event posted live into the AMS matrix.");
+                form.reset();
+                fetchRaces();
+            }
+        });
+    }
 }
