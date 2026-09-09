@@ -18,7 +18,6 @@
     </div>
 
     <div id="app-wrapper">
-        <!-- PREMIUM TOP ACTION BAR -->
         <div class="top-bar">
             <div class="ticker-container">
                 <div class="ticker-track">
@@ -31,7 +30,6 @@
             </div>
         </div>
 
-        <!-- MAIN HEADER / NAVIGATION -->
         <header>
             <div class="logo">AMS<span class="red-bar">/</span></div>
             <nav>
@@ -43,7 +41,6 @@
         </header>
 
         <main>
-            <!-- DASHBOARD HERO BANNER -->
             <section class="hero-banner">
                 <div class="hero-content">
                     <div class="hero-badge">2026 SEASON // AMS LEAGUE</div>
@@ -62,7 +59,7 @@
                 </div>
             </section>
 
-            <!-- LIVE SCHEDULE MATRIX -->
+            <!-- RACE CALENDAR -->
             <section id="schedule" class="dashboard-section">
                 <div class="section-header">
                     <h3 class="section-heading">RACE CALENDAR</h3>
@@ -79,61 +76,27 @@
                 </div>
             </section>
 
-            <!-- DRIVER STANDINGS / DYNAMIC BATTLE BARS -->
+            <!-- CHAMPIONSHIP BATTLES (VMS STYLE BAR GRAPH LAYOUT) -->
             <section id="standings" class="dashboard-section">
                 <div class="section-header">
                     <h3 class="section-heading">CHAMPIONSHIP BATTLES</h3>
                 </div>
-                <div id="standings-list" class="dashboard-grid">
+                <div id="standings-list" class="battles-container">
                     <div class="loading">Syncing standings matrix...</div>
                 </div>
             </section>
 
-            <!-- TEAM LINEUPS SECTION -->
+            <!-- OFFICIAL LINEUPS (IMAGE 3 GRID LAYOUT - COMPLETELY CLEAN FOR DYNAMIC INJECTION) -->
             <section id="lineups" class="dashboard-section">
                 <div class="section-header">
                     <h3 class="section-heading">OFFICIAL LINEUPS</h3>
                 </div>
-                <div class="lineup-grid">
-                    <div class="driver-profile-card">
-                        <div class="driver-avatar-box">
-                            <img src="avatar1.png" alt="Driver" onerror="this.src='https://dicebear.com'">
-                        </div>
-                        <div class="driver-details">
-                            <span class="series-tag f1">FORMULA 1</span>
-                            <h4>Felix Wagner</h4>
-                            <p>Apex Racing Team</p>
-                        </div>
-                        <div class="driver-number">#01</div>
-                    </div>
-
-                    <div class="driver-profile-card">
-                        <div class="driver-avatar-box">
-                            <img src="avatar2.png" alt="Driver" onerror="this.src='https://dicebear.com'">
-                        </div>
-                        <div class="driver-details">
-                            <span class="series-tag f1">FORMULA 1</span>
-                            <h4>Ori Octi</h4>
-                            <p>Red Bull Racing</p>
-                        </div>
-                        <div class="driver-number">#07</div>
-                    </div>
-
-                    <div class="driver-profile-card">
-                        <div class="driver-avatar-box">
-                            <img src="avatar3.png" alt="Driver" onerror="this.src='https://dicebear.com'">
-                        </div>
-                        <div class="driver-details">
-                            <span class="series-tag gt3">GT3</span>
-                            <h4>Marc Engel</h4>
-                            <p>Mercedes AMG</p>
-                        </div>
-                        <div class="driver-number">#44</div>
-                    </div>
+                <div id="lineups-list" class="lineups-teams-wrapper">
+                    <div class="loading">Fetching team rosters from matrix...</div>
                 </div>
             </section>
 
-            <!-- PORTAL LOGIN / TERMINAL FOR OWNER -->
+            <!-- PORTAL LOGIN -->
             <section id="admin-trigger" class="dashboard-section admin-section hidden">
                 <div class="section-header">
                     <h3 class="section-heading">PORTAL LOG IN</h3>
@@ -157,6 +120,7 @@
                         <span>CONTROL INTERFACE ACTIVE</span>
                         <button id="logout-btn" class="btn-logout-portal">LOG OUT</button>
                     </div>
+                    
                     <form id="race-form" class="portal-form" style="margin-top: 20px;">
                         <div class="form-group">
                             <label>Series Tier</label>
@@ -188,7 +152,7 @@
         <footer>
             <div class="footer-wrap">
                 <div>&copy; 2026 APEX MOTORSPORT SERIES.</div>
-                <div class="footer-version">v3.3 // DESIGN ENGINE</div>
+                <div class="footer-version">v3.4 // PRO PRODUCTION ENGINE</div>
             </div>
         </footer>
     </div>
