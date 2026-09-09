@@ -23,7 +23,6 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* SMOOTH INTRO LOGO DROP DOWN FROM TOP */
 #intro-overlay {
     position: fixed;
     top: 0;
@@ -96,7 +95,6 @@ body {
     100% { transform: translate(0, 0); }
 }
 
-/* LIVE TICKER */
 .ticker-wrap {
     width: 100%;
     overflow: hidden;
@@ -154,8 +152,18 @@ nav a:hover, nav a.active {
     border-bottom: 2px solid var(--ams-red);
     padding-bottom: 4px;
 }
+nav a.login-btn {
+    color: var(--ams-red);
+    border: 1px solid rgba(255, 24, 1, 0.3);
+    padding: 6px 14px;
+    transition: 0.3s;
+}
+nav a.login-btn:hover {
+    background: var(--ams-red);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(255, 24, 1, 0.4);
+}
 
-/* HERO WITH RESPONSIVE IMAGE CONTAINER */
 .bento-hero {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -181,7 +189,6 @@ nav a:hover, nav a.active {
     width: 100%;
     height: auto;
     display: block;
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.05));
 }
 .sys-badge {
     font-size: 0.85rem;
@@ -218,7 +225,6 @@ nav a:hover, nav a.active {
     color: #fff;
 }
 
-/* SECTIONS STRUCTURE */
 .content-section {
     padding: 80px 5%;
     border-bottom: 1px solid var(--border-grey);
@@ -336,11 +342,55 @@ nav a:hover, nav a.active {
 }
 
 .hidden { display: none !important; }
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
 .admin-form {
-    background: var(--panel-dark);
+    background: #000;
     border: 1px solid var(--border-grey);
     padding: 35px;
-    max-width: 500px;
+    width: 100%;
+    max-width: 450px;
+}
+.terminal-status-bar {
+    background: rgba(255, 24, 1, 0.1);
+    color: var(--ams-red);
+    border: 1px solid var(--ams-red);
+    padding: 10px;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+.success-bar {
+    background: rgba(0, 255, 102, 0.1);
+    color: #00ff66;
+    border-color: #00ff66;
+}
+.dashboard-header-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--panel-dark);
+    border: 1px solid var(--border-grey);
+    padding: 15px 25px;
+    margin-bottom: 30px;
+}
+.terminal-logout {
+    background: transparent;
+    border: 1px solid var(--ams-red);
+    color: var(--ams-red);
+    font-family: var(--font-display);
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+.terminal-logout:hover {
+    background: var(--ams-red);
+    color: #fff;
 }
 .form-group { margin-bottom: 25px; }
 .form-group label {
@@ -349,20 +399,39 @@ nav a:hover, nav a.active {
     font-family: var(--font-display);
 }
 .form-group input, .form-group select {
-    width: 100%; background: #000;
+    width: 100%; background: var(--panel-dark);
     border: 1px solid var(--border-grey);
     padding: 14px; color: #fff;
     font-family: var(--font-display);
 }
 .form-group input:focus { outline: none; border-color: var(--ams-red); }
 .btn-submit {
-    width: 100%; padding: 14px;
-    background: #fff; color: #000;
-    border: none; font-family: var(--font-display);
-    font-weight: bold; cursor: pointer;
+    width: 100%;
+    padding: 14px;
+    background: #ffffff;
+    color: #000000;
+    border: none;
+    font-family: var(--font-display);
+    font-weight: bold;
+    cursor: pointer;
 }
-.btn-submit:hover { background: var(--ams-red); color: #fff; }
-.status-msg.success { color: #00ff66; margin-bottom: 20px; font-weight: bold;}
+
+.btn-submit:hover {
+    background: var(--ams-red);
+    color: #ffffff;
+}
+
+.ams-red-btn {
+    background: var(--ams-red);
+    color: #ffffff;
+}
+
+.status-msg.success {
+    color: #00ff66;
+    font-family: var(--font-display);
+    font-weight: bold;
+    font-size: 0.9rem;
+}
 
 footer {
     padding: 40px 5%;
@@ -371,4 +440,8 @@ footer {
     font-family: var(--font-display);
     border-top: 1px solid var(--border-grey);
 }
-.footer-grid { display: flex; justify-content: space-between; }
+
+.footer-grid {
+    display: flex;
+    justify-content: space-between;
+}

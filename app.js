@@ -7,7 +7,6 @@ let allRaces = [];
 document.addEventListener("DOMContentLoaded", () => {
     runIntroCinematic();
     
-    // Sicherstellen, dass das unpkg-Skript da ist
     if (typeof supabase !== 'undefined') {
         supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         initApp();
@@ -16,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     setupAdminTrigger();
+    setupLogout();
 });
 
 function runIntroCinematic() {
@@ -171,7 +171,7 @@ function startCountdown(races) {
         const minutes = String(Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
         const seconds = String(Math.floor((difference % (1000 * 60)) / 1000)).padStart(2, '0');
 
-        countdownEl.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        countdownEl.innerText = `${days}:${hours}:${minutes}:${seconds}`;
     }, 1000);
 }
 
@@ -237,6 +237,18 @@ function setupRaceForm() {
                 form.reset();
                 fetchRaces();
             }
+        });
+    }
+}
+
+function setupLogout() {
+    const logoutBtn = document.getElementById("logout-btn");
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", async () => {
+            if (!supabaseClient) return;
+            await supabaseClient.auth.signOut();
+            alert("Disconnected from secure matrix terminal.");
+            window.location.reload();
         });
     }
 }

@@ -11,7 +11,6 @@
 </head>
 <body>
 
-    <!-- INTRO OVERLAY WITHOUT THE SIDE LINE - SMOOTH SLIDE DOWN -->
     <div id="intro-overlay">
         <div class="intro-car-streak"></div>
         <img src="logo.png" alt="AMS" class="intro-logo-img" onerror="this.style.display='none'">
@@ -34,12 +33,11 @@
                 <a href="#schedule" class="nav-link active">01. SCHEDULE</a>
                 <a href="#standings" class="nav-link">02. STANDINGS</a>
                 <a href="#lineups" class="nav-link">03. LINEUPS</a>
-                <a href="#admin-trigger" id="admin-nav" class="nav-link">04. TERMINAL</a>
+                <a href="#admin-trigger" id="admin-nav" class="nav-link login-btn">// LOCK_IN</a>
             </nav>
         </header>
 
         <main>
-            <!-- HERO WITH REAL LOGO IMAGE AND FULL LEAGUE NAME BELOW -->
             <section class="bento-hero">
                 <div class="bento-main">
                     <div class="sys-badge">// AMS NETWORK CORE ONLINE</div>
@@ -55,7 +53,6 @@
                 </div>
             </section>
 
-            <!-- SCHEDULE SECTION -->
             <section id="schedule" class="content-section">
                 <div class="section-header">
                     <h3 class="section-title"><span>01//</span> LIVE RACE SCHEDULE</h3>
@@ -72,7 +69,6 @@
                 </div>
             </section>
 
-            <!-- STANDINGS SECTION -->
             <section id="standings" class="content-section">
                 <div class="section-header">
                     <h3 class="section-title"><span>02//</span> DRIVER STANDINGS</h3>
@@ -82,7 +78,6 @@
                 </div>
             </section>
 
-            <!-- LINEUPS SECTION -->
             <section id="lineups" class="content-section">
                 <div class="section-header">
                     <h3 class="section-title"><span>03//</span> TEAM LINEUPS</h3>
@@ -127,48 +122,60 @@
                 </div>
             </section>
 
-            <!-- HIDDEN OWNER TERMINAL SECTION -->
+            <!-- VISIBLE DRIVER / ADMIN TERMINAL LOGIN SECTION -->
             <section id="admin-trigger" class="content-section admin-section hidden">
-                <h3 class="section-title"><span>04//</span> OWNER TERMINAL ACCESS</h3>
+                <div class="section-header">
+                    <h3 class="section-title"><span>04//</span> SECURE TERMINAL LINK</h3>
+                </div>
                 
-                <form id="login-form" class="admin-form">
-                    <div class="form-group">
-                        <label>OPERATOR EMAIL</label>
-                        <input type="email" id="admin-email" value="eduardofucucuu@gmail.com" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label>SECURITY KEY</label>
-                        <input type="password" id="admin-password" required placeholder="ENTER OVERRIDE KEY">
-                    </div>
-                    <button type="submit" class="btn-submit">EXECUTE INITIALIZATION</button>
-                </form>
+                <div class="login-wrapper">
+                    <form id="login-form" class="admin-form">
+                        <div class="terminal-status-bar">AUTHENTICATION_REQUIRED</div>
+                        <div class="form-group">
+                            <label>OPERATOR IDENTITY (EMAIL)</label>
+                            <input type="email" id="admin-email" value="eduardofucucuu@gmail.com" placeholder="driver@apex.com">
+                        </div>
+                        <div class="form-group">
+                            <label>ENCRYPTION PASSKEY</label>
+                            <input type="password" id="admin-password" required placeholder="••••••••">
+                        </div>
+                        <button type="submit" class="btn-submit">INITIALIZE OVERRIDE</button>
+                    </form>
+                </div>
 
                 <div id="admin-dashboard" class="hidden">
-                    <p class="status-msg success">Access Granted. Terminal Link Established.</p>
-                    <form id="race-form" class="admin-form">
-                        <div class="form-group">
-                            <label>Series Tier</label>
-                            <select id="race-series">
-                                <option value="Formula 1">Formula 1</option>
-                                <option value="Formula 2">Formula 2</option>
-                                <option value="Formula 3">Formula 3</option>
-                                <option value="GT3">GT3</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Circuit / Track</label>
-                            <input type="text" id="race-track" required placeholder="e.g. Monza Circuit">
-                        </div>
-                        <div class="form-group">
-                            <label>Country</label>
-                            <input type="text" id="race-country" required placeholder="e.g. Italy">
-                        </div>
-                        <div class="form-group">
-                            <label>Race Timestamp</label>
-                            <input type="datetime-local" id="race-date" required>
-                        </div>
-                        <button type="submit" class="btn-submit ams-red-btn">DEPLOY LIVE EVENT</button>
-                    </form>
+                    <div class="dashboard-header-panel">
+                        <p class="status-msg success">[ACCESS GRANTED] — TERMINAL STATE: ACTIVE</p>
+                        <button id="logout-btn" class="terminal-logout">// DISCONNECT</button>
+                    </div>
+                    
+                    <div class="form-grid-admin">
+                        <form id="race-form" class="admin-form">
+                            <div class="terminal-status-bar success-bar">DATABASE INJECTION MATRIX</div>
+                            <div class="form-group">
+                                <label>Series Tier</label>
+                                <select id="race-series">
+                                    <option value="Formula 1">Formula 1</option>
+                                    <option value="Formula 2">Formula 2</option>
+                                    <option value="Formula 3">Formula 3</option>
+                                    <option value="GT3">GT3</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Circuit / Track</label>
+                                <input type="text" id="race-track" required placeholder="e.g. Monza Circuit">
+                            </div>
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input type="text" id="race-country" required placeholder="e.g. Italy">
+                            </div>
+                            <div class="form-group">
+                                <label>Race Timestamp</label>
+                                <input type="datetime-local" id="race-date" required>
+                            </div>
+                            <button type="submit" class="btn-submit ams-red-btn">DEPLOY LIVE EVENT</button>
+                        </form>
+                    </div>
                 </div>
             </section>
         </main>
@@ -176,7 +183,7 @@
         <footer>
             <div class="footer-grid">
                 <div>&copy; 2026 APEX MOTORSPORT SERIES. SECURE NETWORK CORES.</div>
-                <div class="footer-stamp">SYSTEM_REPLICA_V3.1</div>
+                <div class="footer-stamp">SYSTEM_REPLICA_V3.2</div>
             </div>
         </footer>
     </div>
