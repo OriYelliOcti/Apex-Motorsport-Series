@@ -1,4 +1,4 @@
-/* --- APEX RACING NET GROOVE LOOK (ZEBEYOND INSPIRED) --- */
+/* --- PREMIUM SPORTS STREAMING DASHBOARD LOOK (ZEBEYOND STYLE) --- */
 * {
     margin: 0;
     padding: 0;
@@ -6,13 +6,13 @@
 }
 
 :root {
-    --bg-dark-core: #040607;
-    --panel-dark-sub: #080b0d;
-    --border-clean: rgba(255, 255, 255, 0.04);
+    --bg-dark-core: #050708;
+    --panel-dark-sub: #0b0e11;
+    --border-clean: rgba(255, 255, 255, 0.05);
     --ams-teal: #00f0b5;
-    --ams-teal-glow: rgba(0, 240, 181, 0.12);
+    --ams-teal-glow: rgba(0, 240, 181, 0.15);
     --text-pure: #ffffff;
-    --text-dimmed: #7e8f9f;
+    --text-dimmed: #8a99ad;
     --font-heading: 'Orbitron', sans-serif;
     --font-ui: 'Rajdhani', sans-serif;
 }
@@ -29,6 +29,7 @@ body {
     overflow-x: hidden;
 }
 
+/* INTRO CINEMATIC OVERLAY */
 #intro-overlay {
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
@@ -61,7 +62,7 @@ body {
 
 @keyframes smoothDrop {
     0% { opacity: 0; transform: translateY(-40px); }
-    100% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 1; transform: translateY(0); filter: drop-shadow(0 0 20px var(--ams-teal-glow)); }
 }
 
 .shake-trigger { animation: screenShake 0.4s linear; }
@@ -71,11 +72,12 @@ body {
     40% { transform: translate(3px, -2px); }
 }
 
+/* TOP STATUS ACTION BAR */
 .top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #010203;
+    background: #020304;
     border-bottom: 1px solid var(--border-clean);
     padding: 12px 10%;
 }
@@ -101,19 +103,20 @@ body {
 .social-btn.discord { background: #5865F2; }
 .social-btn.youtube { background: #FF0000; }
 
+/* HEADER BRAND NAV */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 10%;
-    background: rgba(4, 6, 7, 0.75);
-    backdrop-filter: blur(15px);
+    padding: 20px 10%;
+    background: rgba(5, 7, 8, 0.8);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-clean);
     position: sticky; top: 0; z-index: 100;
 }
 
 .logo { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 900; }
-.red-bar { color: var(--ams-teal); text-shadow: 0 0 10px var(--ams-teal-glow); }
+.red-bar { color: var(--ams-teal); text-shadow: 0 0 10px var(--ams-teal); }
 nav { display: flex; align-items: center; }
 
 .nav-link {
@@ -224,6 +227,7 @@ nav { display: flex; align-items: center; }
     color: var(--text-pure);
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
 }
+/* SECTION SYSTEM LAYOUTS */
 .dashboard-section { padding: 90px 10%; border-bottom: 1px solid var(--border-clean); }
 .section-header {
     display: flex;
@@ -292,8 +296,8 @@ nav { display: flex; align-items: center; }
 .battle-row { display: flex; flex-direction: column; gap: 20px; }
 .driver-duel-line { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 15px; }
 .duel-position { font-family: var(--font-heading); font-weight: 900; color: var(--text-dimmed); width: 25px; }
-.duel-name-box h5 { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 900; }
-.duel-name-box p { color: var(--text-dimmed); font-size: 0.85rem; }
+.driver-duel-line h5 { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 900; }
+.driver-duel-line p { color: var(--text-dimmed); font-size: 0.85rem; }
 .duel-points-total { font-family: var(--font-heading); font-size: 1.2rem; font-weight: 900; text-align: right; }
 
 .duel-progress-bar-wrapper {
@@ -326,7 +330,7 @@ nav { display: flex; align-items: center; }
 .driver-card-meta-strings span { font-size: 0.8rem; font-weight: bold; opacity: 0.5; text-transform: uppercase; }
 .driver-card-huge-number { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 900; opacity: 0.2; z-index: 2; }
 
-/* CLEAN CENTRALIZED TERMINAL PORTAL */
+/* CENTRALIZED TERMINAL PORTAL */
 .portal-container { display: flex; justify-content: center; padding: 40px 0; }
 .portal-form {
     background: #090c0e; border: 1px solid var(--border-clean);
