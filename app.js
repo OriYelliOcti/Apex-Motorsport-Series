@@ -14,7 +14,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     setupAdminTrigger();
     setupLogout();
+    setupSmoothNavigation(); // Aktiviert die fehlerfreien Reiter
 });
+
+function setupSmoothNavigation() {
+    const navLinks = document.querySelectorAll('nav a, .hero-buttons a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const targetId = link.getAttribute('href');
+            if (targetId.startsWith('#')) {
+                e.preventDefault();
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    // Entfernt "active" von allen Links und setzt es auf den geklickten
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    if (link.classList.contains('nav-link')) {
+                        link.classList.add('active');
+                    }
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    });
+}
 
 function runIntroCinematic() {
     const overlay = document.getElementById("intro-overlay");
@@ -97,10 +119,11 @@ function renderStandings(standings) {
         const drivers = grouped[seriesName];
         const maxPoints = Math.max(...drivers.map(d => d.points || 1));
         
-        let seriesAccentColor = "#ff1801";
+        // Exakt auf eure Wunsch-Farbpalette abgestimmt
+        let seriesAccentColor = "#ff1801"; // F1 = Racing Red
         if(seriesName.toLowerCase() === "formula 2") seriesAccentColor = "#00b0f0";
         if(seriesName.toLowerCase() === "formula 3") seriesAccentColor = "#fcc000";
-        if(seriesName.toLowerCase() === "gt3") seriesAccentColor = "#00ff66";
+        if(seriesName.toLowerCase() === "gt3") seriesAccentColor = "#ff007f"; // GT3 = Cyber Pink
 
         htmlOutput += `
             <div class="series-battle-block">
@@ -259,7 +282,7 @@ function setupRaceForm() {
             };
             const { error } = await supabaseClient.from('races').insert([raceData]);
             if (error) { alert("Database write error: " + error.message); } 
-            else { alert("SUCCESS! Event posted live into the AMS matrix."); form.reset(); fetchRaces(); }
+            else { alert("SUCCESS! Event posted live."); form.reset(); fetchRaces(); }
         });
     }
 }
