@@ -2,20 +2,20 @@ const SUPABASE_URL = "https://supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_-N5JX1LBBNUHxnOe9E5R4A_tyqDzvLT";
 
 let supabaseClient = null;
-let currentSessionUser = null;
 let allRaces = [];
 
 document.addEventListener("DOMContentLoaded", () => {
+    runIntroCinematic();
+    
+    // Sicherstellen, dass das unpkg-Skript da ist
     if (typeof supabase !== 'undefined') {
         supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        runIntroCinematic();
         initApp();
-        setupAdminTrigger();
     } else {
-        console.error("Supabase library not loaded from CDN.");
-        const list = document.getElementById("races-list");
-        if (list) list.innerHTML = `<div class='race-meta'>Network Error: CDN library blocked or unavailable.</div>`;
+        console.error("Supabase library not injected.");
     }
+    
+    setupAdminTrigger();
 });
 
 function runIntroCinematic() {
@@ -60,8 +60,6 @@ async function fetchRaces() {
         startCountdown(allRaces);
     } catch (err) {
         console.error(err.message);
-        const list = document.getElementById("races-list");
-        if (list) list.innerHTML = `<div class='race-meta'>Failed to load data arrays from Supabase.</div>`;
     }
 }
 
@@ -102,8 +100,6 @@ async function fetchStandings() {
         renderStandings(data || []);
     } catch (err) {
         console.error(err.message);
-        const list = document.getElementById("standings-list");
-        if (list) list.innerHTML = `<p style='color: #666;'>Standings block array currently unavailable.</p>`;
     }
 }
 
@@ -208,7 +204,6 @@ function setupLoginForm() {
             if (error) {
                 alert("Verification Failed: " + error.message);
             } else {
-                currentSessionUser = data.user;
                 form.classList.add("hidden");
                 const dashboard = document.getElementById("admin-dashboard");
                 if (dashboard) dashboard.classList.remove("hidden");

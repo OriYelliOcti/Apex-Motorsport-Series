@@ -7,10 +7,6 @@
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
-    
-    <!-- GEÄNDERT: Zuverlässigeres unpkg-CDN statt jsdelivr -->
-    <script src="https://unpkg.com"></script>
-    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -122,6 +118,8 @@
         </footer>
     </div>
 
-    <script src="app.js" defer></script>
+    <!-- Erst unpkg laden, dann lokales Script aufrufen -->
+    <script src="https://unpkg.com"></script>
+    <script src="app.js"></script>
 </body>
 </html>
